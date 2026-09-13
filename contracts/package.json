@@ -7,6 +7,13 @@
     "compile": "hardhat compile",
     "test": "hardhat test",
     "deploy:core-testnet": "hardhat run scripts/deploy-core-testnet.ts",
+    "deploy:final-stock-tokens": "hardhat run scripts/deploy-final-stock-tokens.ts",
+    "deploy:final-testnet": "hardhat run --no-compile scripts/deploy-final-testnet.ts",
+    "preflight:final-testnet": "hardhat run --no-compile scripts/preflight-final-testnet.ts",
+    "verify:final-testnet": "hardhat run --no-compile scripts/verify-final-testnet.ts",
+    "operate:final-keeper": "hardhat run --no-compile scripts/run-final-keeper.ts",
+    "operate:final-sunday": "hardhat run --no-compile scripts/run-final-sunday.ts",
+    "verify:final-stock-tokens": "hardhat run --no-compile scripts/verify-final-stock-tokens.ts",
     "deploy:core-v2-testnet": "hardhat run scripts/deploy-core-v2-testnet.ts",
     "audit:external-testnet": "hardhat run --no-compile scripts/audit-external-testnet.ts",
     "deploy:v4-testnet": "hardhat run --no-compile scripts/deploy-v4-testnet.ts",
@@ -45,6 +52,7 @@
     "typescript": "^5"
   },
   "dependencies": {
-    "@account-abstraction/contracts": "0.7.0"
+    "@account-abstraction/contracts": "0.7.0",
+    "@openzeppelin/merkle-tree": "^1.0.8"
   }
 }
