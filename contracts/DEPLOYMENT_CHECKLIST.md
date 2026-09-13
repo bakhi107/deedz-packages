@@ -79,3 +79,5 @@ This is the release gate for testnet and mainnet. A deployment is **not complete
 - ETH → RENT smoke transaction: `0xbadbc27d3404c340ff67865b3751cdf359e359302a291e1a5f8b3e31c8381b39`
 - RENT → ETH smoke transaction: `0x4f0c8256a21fafb404833ed0bd97f0a8323df5e7be1645ad32948d16622040c8`
 - Verified fee queued in the current FeeProcessor: `58,458,904,109 wei`.
+- ProtocolLiquidityManager: `0x9a86273026a911543317f53afd31976f104afa43` (wired to FeeProcessor and SundaySettlement).
+- Uniswap liquidity reinvestment transaction: `0xc8f3b47410335c2e9ab503338ef0181529398ded34e5c2a74d1f611de7afce5c`.

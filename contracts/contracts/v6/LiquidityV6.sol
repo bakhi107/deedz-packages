@@ -117,3 +117,7 @@ contract RentBuyBurnV6 is Ownable, ReentrancyGuard {
     receive() external payable { require(msg.sender == vault, "Only vault"); }
 }
 interface IRentSelfBurnV6 { function burn(uint256 amount) external; }
+
+contract ProtocolLiquidityManager is LiquidityV6 {
+    constructor(address governor, address executor) LiquidityV6(governor, executor) {}
+}

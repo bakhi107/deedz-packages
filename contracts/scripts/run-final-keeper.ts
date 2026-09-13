@@ -11,6 +11,7 @@ const deed = await viem.getContractAt("contracts/final/Deed.sol:Deed", env("FINA
 const processor = await viem.getContractAt("FeeProcessor", env("FINAL_PROCESSOR"));
 const rewards = await viem.getContractAt("StockRewards", env("FINAL_REWARDS"));
 const exchange = await viem.getContractAt("TestExchange", env("FINAL_EXCHANGE"));
+const liquidity = await viem.getContractAt("ProtocolLiquidityManager", env("FINAL_LIQUIDITY_MANAGER"));
 if ((await processor.read.keeper()).toLowerCase() !== wallet.account.address.toLowerCase()) throw new Error("Configured key is not the keeper");
 
 const block = await client.getBlock(); const last = await processor.read.lastCycleAt(); const interval = await processor.read.INTERVAL();
@@ -51,6 +52,7 @@ for (let index = 0; index < populated.length; ++index) {
 
 const hash = await processor.write.processCycle([allocations]);
 const receipt = await client.waitForTransactionReceipt({ hash }); if (receipt.status !== "success") throw new Error(`Cycle failed: ${hash}`);
+await reinvestLiquidity();
 const path = resolve(process.cwd(), "keeper-data/rewards.json"); await mkdir(resolve(process.cwd(), "keeper-data"), { recursive: true });
 let history = { chainId: 46630, rewards: rewards.address.toLowerCase(), batches: [] as any[] };
 try { const stored = JSON.parse(await readFile(path, "utf8")); if (stored.rewards === history.rewards) history = stored; } catch {}
@@ -59,3 +61,9 @@ await writeFile(path, JSON.stringify(history, null, 2) + "\n");
 console.log(`CYCLE_OK ${hash}; batches ${firstBatch}-${nextBatch - 1n}`);
 
 function env(name: string) { const value = process.env[name]; if (!value || !isAddress(value)) throw new Error(`${name} missing`); return getAddress(value); }
+async function reinvestLiquidity() {
+  const eth = await client.getBalance({ address: liquidity.address }); if (eth < 1_000n) return;
+  const token = await viem.getContractAt("RentToken", env("FINAL_RENT")); const rentBalance = await token.read.balanceOf([liquidity.address]); if (rentBalance === 0n) return;
+  const block = await client.getBlock(); const tx = await liquidity.write.reinvest([eth / 2n, 1n, eth, rentBalance, 1n, block.timestamp + 900n]);
+  const receipt = await client.waitForTransactionReceipt({ hash: tx }); if (receipt.status !== "success") throw new Error(`Liquidity reinvest failed: ${tx}`);
+}
