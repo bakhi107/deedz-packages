@@ -9,6 +9,7 @@
     "deploy:core-testnet": "hardhat run scripts/deploy-core-testnet.ts",
     "deploy:final-stock-tokens": "hardhat run scripts/deploy-final-stock-tokens.ts",
     "deploy:final-testnet": "hardhat run --no-compile scripts/deploy-final-testnet.ts",
+    "deploy:final-uniswap": "hardhat run --no-compile scripts/deploy-final-uniswap.ts",
     "preflight:final-testnet": "hardhat run --no-compile scripts/preflight-final-testnet.ts",
     "verify:final-testnet": "hardhat run --no-compile scripts/verify-final-testnet.ts",
     "operate:final-keeper": "hardhat run --no-compile scripts/run-final-keeper.ts",

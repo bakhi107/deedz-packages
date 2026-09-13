@@ -88,3 +88,7 @@ contract RentHookV6Harness is RentHookV6 {
     constructor(IPoolManager manager, address admin) RentHookV6(manager, admin) {}
     function validateHookAddress(BaseHook) internal pure override {}
 }
+
+contract TradingHook is RentHookV6 {
+    constructor(IPoolManager manager, address admin) RentHookV6(manager, admin) {}
+}

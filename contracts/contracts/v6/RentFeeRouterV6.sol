@@ -15,7 +15,9 @@ import {SwapParams} from "@uniswap/v4-periphery/lib/v4-core/src/types/PoolOperat
 
 /// @title DEEDS v6 RENT fee router
 /// @notice Exact-input RENT/ETH swaps with an exact 5% ETH protocol fee and 70/20/10 accounting.
-contract RentFeeRouterV6 is IUnlockCallback, ReentrancyGuard, Ownable {
+interface ITradingFeeProcessor { function depositTradingFees() external payable; }
+
+contract TradingRouter is IUnlockCallback, ReentrancyGuard, Ownable {
     using BalanceDeltaLibrary for BalanceDelta;
     using SafeERC20 for IERC20;
 
@@ -43,9 +45,7 @@ contract RentFeeRouterV6 is IUnlockCallback, ReentrancyGuard, Ownable {
     IPoolManager public immutable poolManager;
     IERC20 public immutable rent;
     address public immutable hook;
-    address public immutable stockBuyerReceiver;
-    address public immutable liquidityReceiver;
-    address public immutable teamReceiver;
+    ITradingFeeProcessor public immutable feeProcessor;
 
     uint256 public stockBuyerAccrued;
     uint256 public liquidityAccrued;
@@ -69,21 +69,16 @@ contract RentFeeRouterV6 is IUnlockCallback, ReentrancyGuard, Ownable {
         address poolManager_,
         address rent_,
         address hook_,
-        address stockBuyerReceiver_,
-        address liquidityReceiver_,
-        address teamReceiver_
+        address feeProcessor_
     ) Ownable(msg.sender) {
         if (
             poolManager_ == address(0) || rent_ == address(0) || hook_ == address(0)
-                || stockBuyerReceiver_ == address(0) || liquidityReceiver_ == address(0)
-                || teamReceiver_ == address(0)
+                || feeProcessor_.code.length == 0
         ) revert InvalidAddress();
         poolManager = IPoolManager(poolManager_);
         rent = IERC20(rent_);
         hook = hook_;
-        stockBuyerReceiver = stockBuyerReceiver_;
-        liquidityReceiver = liquidityReceiver_;
-        teamReceiver = teamReceiver_;
+        feeProcessor = ITradingFeeProcessor(feeProcessor_);
     }
 
     function configureLaunch(uint256 start, address oracleVault, address launchpad_) external onlyOwner {
@@ -191,32 +186,10 @@ contract RentFeeRouterV6 is IUnlockCallback, ReentrancyGuard, Ownable {
         });
     }
 
-    function claimBucket() external nonReentrant returns (uint256 amount) {
-        if (msg.sender == stockBuyerReceiver) {
-            amount = stockBuyerAccrued;
-            stockBuyerAccrued = 0;
-        } else if (msg.sender == liquidityReceiver) {
-            amount = liquidityAccrued;
-            liquidityAccrued = 0;
-        } else if (msg.sender == teamReceiver) {
-            amount = teamAccrued;
-            teamAccrued = 0;
-        } else {
-            revert NotReceiver();
-        }
-        if (amount != 0) _send(payable(msg.sender), amount);
-        emit BucketClaimed(msg.sender, amount);
-    }
-
     function _accountFee(uint256 fee) internal {
-        uint256 stockBuyerShare = fee * 70 / 100;
-        uint256 liquidityShare = fee * 20 / 100;
-        uint256 teamShare = fee - stockBuyerShare - liquidityShare;
-        stockBuyerAccrued += stockBuyerShare;
-        liquidityAccrued += liquidityShare;
-        teamAccrued += teamShare;
         totalFeesCollected += fee;
-        emit FeeAccounted(fee, stockBuyerShare, liquidityShare, teamShare);
+        feeProcessor.depositTradingFees{value: fee}();
+        emit FeeAccounted(fee, 0, 0, 0);
     }
 
     function _checkDeadline(uint256 deadline) internal view {
@@ -233,3 +206,10 @@ contract RentFeeRouterV6 is IUnlockCallback, ReentrancyGuard, Ownable {
     }
 }
 interface ILaunchOracleV6 { function usdToEth(uint256 usd6) external view returns (uint256); }
+
+/// @dev Legacy source-name compatibility only. New deployments use TradingRouter.
+contract RentFeeRouterV6 is TradingRouter {
+    constructor(address manager, address rent_, address hook_, address processor, address, address)
+        TradingRouter(manager, rent_, hook_, processor) {}
+    function claimBucket() external pure returns (uint256) { return 0; }
+}

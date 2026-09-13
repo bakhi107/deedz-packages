@@ -71,6 +71,11 @@ This is the release gate for testnet and mainnet. A deployment is **not complete
 - [ ] Vercel production variables are updated and both hosted applications are smoke-tested.
 - [ ] Contracts, mint, and web repositories are pushed at the tested commits.
 
-## Current release blocker
+## Current testnet Uniswap proof
 
-The final RENT deployment is not yet connected to a new Uniswap v4 hook/pool. The current test trading pool is not a substitute for the mandatory real-hook smoke test. Do not call this release complete until that integration and test are finished.
+- TradingHook: `0x03adeC65531BaF5fB4fF0c31f34B3013609CC080`
+- TradingRouter: `0x4d8f3afb14349a2702b955e52ef9d77ff4a5e383`
+- Pool ID: `0xb5e74a531aa4400eb43e696c7bf8f67b1160d1524cfa238e41ee46817c429790`
+- ETH → RENT smoke transaction: `0xbadbc27d3404c340ff67865b3751cdf359e359302a291e1a5f8b3e31c8381b39`
+- RENT → ETH smoke transaction: `0x4f0c8256a21fafb404833ed0bd97f0a8323df5e7be1645ad32948d16622040c8`
+- Verified fee queued in the current FeeProcessor: `58,458,904,109 wei`.
