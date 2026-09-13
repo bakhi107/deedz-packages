@@ -1,0 +1,50 @@
+{
+  "name": "@deeds/contracts",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "deploy:core-testnet": "hardhat run scripts/deploy-core-testnet.ts",
+    "deploy:core-v2-testnet": "hardhat run scripts/deploy-core-v2-testnet.ts",
+    "audit:external-testnet": "hardhat run --no-compile scripts/audit-external-testnet.ts",
+    "deploy:v4-testnet": "hardhat run --no-compile scripts/deploy-v4-testnet.ts",
+    "deploy:v6-dev-testnet": "hardhat run --no-compile scripts/deploy-v6-dev-testnet.ts",
+    "deploy:v6-immediate-lighting-test": "hardhat run --no-compile scripts/deploy-v6-immediate-lighting-test.ts",
+    "deploy:finalized-core-testnet": "hardhat run --no-compile scripts/deploy-finalized-core-testnet.ts",
+    "deploy:complete-testnet": "hardhat run --no-compile scripts/deploy-complete-testnet.ts",
+    "deploy:test-reward-keeper": "hardhat run --no-compile scripts/deploy-test-reward-keeper.ts",
+    "operate:test-reward-cycle": "hardhat run --no-compile scripts/run-reward-cycle-if-ready.ts",
+    "operate:test-lapse-keeper": "hardhat run --no-compile scripts/run-lapse-keeper.ts",
+    "configure:v6-test-reward-tickers": "hardhat run --no-compile scripts/configure-v6-test-reward-tickers.ts",
+    "deploy:v6-test-emitter": "hardhat run --no-compile scripts/deploy-v6-test-emitter.ts",
+    "verify:v6-dev-testnet": "hardhat run --no-compile scripts/verify-v6-dev-testnet.ts",
+    "deploy:v6-mock-dependencies": "hardhat run --no-compile scripts/deploy-v6-mock-dependencies.ts",
+    "set:v6-mock-feed": "hardhat run --no-compile scripts/set-v6-mock-feed.ts",
+    "fund:v6-mock-user": "hardhat run --no-compile scripts/fund-v6-mock-user.ts",
+    "validate:v6-release": "hardhat run --no-compile scripts/validate-v6-release.ts",
+    "deploy:v6-candidate": "hardhat run --no-compile scripts/deploy-v6-candidate.ts",
+    "verify:v6-candidate": "hardhat run --no-compile scripts/verify-v6-candidate.ts",
+    "launch:v6-candidate": "hardhat run --no-compile scripts/launch-v6-candidate.ts",
+    "operate:v6-keeper": "hardhat run --no-compile scripts/operate-v6-keeper.ts",
+    "export:v6-frontend": "hardhat run --no-compile scripts/export-v6-frontend-env.ts",
+    "deploy:v6-fee-pool-testnet": "hardhat run --no-compile scripts/deploy-v6-fee-pool-testnet.ts",
+    "verify:v4-testnet": "hardhat run --no-compile scripts/verify-v4-testnet.ts",
+    "smoke:core-testnet": "hardhat run scripts/smoke-core-testnet.ts",
+    "prepare:test-wallet": "hardhat run scripts/prepare-test-wallet.ts",
+    "clean": "hardhat clean"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox-viem": "latest",
+    "@openzeppelin/contracts": "^5.6.1",
+    "@uniswap/v4-core": "^1.0.2",
+    "@uniswap/v4-periphery": "^1.0.3",
+    "dotenv": "^17.4.2",
+    "hardhat": "^3.15.0",
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@account-abstraction/contracts": "0.7.0"
+  }
+}
