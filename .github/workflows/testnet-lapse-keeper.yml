@@ -1,0 +1,47 @@
+name: DEEDZ Testnet Lapse Keeper
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: deedz-testnet-lapse-keeper
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  lapse-expired-deedz:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: contracts
+    env:
+      PRIVATE_KEY: ${{ secrets.KEEPER_PRIVATE_KEY }}
+      ROBINHOOD_TESTNET_RPC_URL: https://rpc.testnet.chain.robinhood.com
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Validate keeper secret
+        shell: bash
+        run: |
+          if [ -z "$PRIVATE_KEY" ]; then
+            echo "Repository secret KEEPER_PRIVATE_KEY is not configured."
+            exit 1
+          fi
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Run lapse keeper
+        run: npm run operate:test-lapse-keeper
