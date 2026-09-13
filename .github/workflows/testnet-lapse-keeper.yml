@@ -43,5 +43,8 @@ jobs:
       - name: Install dependencies
         run: npm install --no-audit --no-fund
 
+      - name: Compile contracts
+        run: npm run compile
+
       - name: Run lapse keeper
         run: npm run operate:test-lapse-keeper
