@@ -49,6 +49,54 @@
       ],
       "transaction": "0x3f4936145d4c64df8b89cbb1ed13a9385bf266ea96306306804a81211a451d9c",
       "createdAt": "2026-09-14T12:42:35.023Z"
+    },
+    {
+      "id": "3",
+      "ticker": "0x504c545200000000000000000000000000000000000000000000000000000000",
+      "root": "0xd44079d42ad71a153238d86205391124e57b6379808054f78758320a98764738",
+      "claims": [
+        {
+          "batchId": "3",
+          "tokenId": "1",
+          "account": "0xfAbCC6e2ec2Faf171D31D4dd2Aa515d3bCaA558c",
+          "amount": "249866430000",
+          "proof": []
+        }
+      ],
+      "transaction": "0xf52a846fa546b5712226f3c5c1315f0173faee89c6b885065545674f1c2dad0e",
+      "createdAt": "2026-09-14T19:16:26.663Z"
+    },
+    {
+      "id": "4",
+      "ticker": "0x4e464c5800000000000000000000000000000000000000000000000000000000",
+      "root": "0x32b992f8d1310391f189719a4e058b6a6c9baf649c174f5460a0a1a08a5db189",
+      "claims": [
+        {
+          "batchId": "4",
+          "tokenId": "2",
+          "account": "0xC878Cc072aC3a869A938A99DA404D25850835a20",
+          "amount": "249866430000",
+          "proof": []
+        }
+      ],
+      "transaction": "0xf52a846fa546b5712226f3c5c1315f0173faee89c6b885065545674f1c2dad0e",
+      "createdAt": "2026-09-14T19:16:26.663Z"
+    },
+    {
+      "id": "5",
+      "ticker": "0x4d53465400000000000000000000000000000000000000000000000000000000",
+      "root": "0xb5f28fbf548598428a80e1418091921158739aba2f930fa5d42bbed94f5dd085",
+      "claims": [
+        {
+          "batchId": "5",
+          "tokenId": "4",
+          "account": "0xfAbCC6e2ec2Faf171D31D4dd2Aa515d3bCaA558c",
+          "amount": "249866430000",
+          "proof": []
+        }
+      ],
+      "transaction": "0xf52a846fa546b5712226f3c5c1315f0173faee89c6b885065545674f1c2dad0e",
+      "createdAt": "2026-09-14T19:16:26.663Z"
     }
   ]
 }
