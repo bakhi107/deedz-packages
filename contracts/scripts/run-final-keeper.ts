@@ -24,7 +24,9 @@ const totalMinted = await deed.read.totalMinted();
 for (let id = 1n; id <= totalMinted; ++id) {
   if (await deed.read.stateOf([id]) !== 1) continue;
   const [data, owner] = await Promise.all([deed.read.deedData([id]), deed.read.ownerOf([id])]);
-  const key = data[0].toLowerCase(); const group = groups.get(key) ?? { ticker: data[0], tokens: [] };
+  const ticker = data.ticker;
+  if (!ticker) throw new Error(`Deed ${id}: ticker missing from deedData`);
+  const key = ticker.toLowerCase(); const group = groups.get(key) ?? { ticker, tokens: [] };
   group.tokens.push({ id, owner }); groups.set(key, group);
 }
 const active = [...groups.values()].reduce((sum, group) => sum + group.tokens.length, 0);

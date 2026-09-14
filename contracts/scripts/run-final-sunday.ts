@@ -23,7 +23,7 @@ for (let week = 0n; week < currentWeek; ++week) {
   }
   const total = await treasury.read.distributableRentEth([week]); if (total === 0n) continue;
   const [winner] = await settlement.read.winningClan([week]); const holders = [];
-  const minted = await deed.read.totalMinted(); for (let id = 1n; id <= minted; ++id) { const data = await deed.read.deedData([id]); if (data[0].toLowerCase() === winner.toLowerCase() && await deed.read.stateOf([id]) === 1) holders.push({ id, owner: await deed.read.ownerOf([id]) }); }
+  const minted = await deed.read.totalMinted(); for (let id = 1n; id <= minted; ++id) { const data = await deed.read.deedData([id]); const ticker = data.ticker; if (!ticker) throw new Error(`Deed ${id}: ticker missing from deedData`); if (ticker.toLowerCase() === winner.toLowerCase() && await deed.read.stateOf([id]) === 1) holders.push({ id, owner: await deed.read.ownerOf([id]) }); }
   if (!holders.length) throw new Error(`Week ${week}: winning clan has no Lit holders`);
   const jackpotEth = total * 20n / 100n; const rate = await exchange.read.stockPerEth([winner]); const stockTotal = jackpotEth * rate / 10n ** 18n; const batchId = await rewards.read.batchCount(); let used = 0n;
   const values = holders.map((holder, index) => { const amount = index === holders.length - 1 ? stockTotal - used : stockTotal / BigInt(holders.length); used += amount; return [batchId.toString(), holder.id.toString(), getAddress(holder.owner), amount.toString()]; });
