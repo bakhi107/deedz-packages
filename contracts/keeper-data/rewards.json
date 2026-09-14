@@ -1,0 +1,54 @@
+{
+  "chainId": 46630,
+  "rewards": "0x7517287ac3fc221fa02840dfb1d1ab8b9bd31904",
+  "batches": [
+    {
+      "id": "0",
+      "ticker": "0x504c545200000000000000000000000000000000000000000000000000000000",
+      "root": "0xef19ba3968363f2a79280e9688f1ea90cd7cfabeec63007b51e0451ff10d1ee2",
+      "claims": [
+        {
+          "batchId": "0",
+          "tokenId": "1",
+          "account": "0xfAbCC6e2ec2Faf171D31D4dd2Aa515d3bCaA558c",
+          "amount": "49973286037000",
+          "proof": []
+        }
+      ],
+      "transaction": "0x3f4936145d4c64df8b89cbb1ed13a9385bf266ea96306306804a81211a451d9c",
+      "createdAt": "2026-09-14T12:42:35.023Z"
+    },
+    {
+      "id": "1",
+      "ticker": "0x4e464c5800000000000000000000000000000000000000000000000000000000",
+      "root": "0x9264b327d39653bde7c0e607768ac05f62fdc92ff31117f79ed0c03b50b61ba2",
+      "claims": [
+        {
+          "batchId": "1",
+          "tokenId": "2",
+          "account": "0xC878Cc072aC3a869A938A99DA404D25850835a20",
+          "amount": "49973286037000",
+          "proof": []
+        }
+      ],
+      "transaction": "0x3f4936145d4c64df8b89cbb1ed13a9385bf266ea96306306804a81211a451d9c",
+      "createdAt": "2026-09-14T12:42:35.023Z"
+    },
+    {
+      "id": "2",
+      "ticker": "0x4d53465400000000000000000000000000000000000000000000000000000000",
+      "root": "0x8d1bdef35fd4ef09694075fc0fca610eba8eaec1b874a3d144e354e92320d75f",
+      "claims": [
+        {
+          "batchId": "2",
+          "tokenId": "4",
+          "account": "0xfAbCC6e2ec2Faf171D31D4dd2Aa515d3bCaA558c",
+          "amount": "49973286037000",
+          "proof": []
+        }
+      ],
+      "transaction": "0x3f4936145d4c64df8b89cbb1ed13a9385bf266ea96306306804a81211a451d9c",
+      "createdAt": "2026-09-14T12:42:35.023Z"
+    }
+  ]
+}
