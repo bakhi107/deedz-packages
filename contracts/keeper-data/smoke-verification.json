@@ -1,0 +1,63 @@
+{
+  "chainId": 46630,
+  "account": "0xB174D2D54F30dEdDEcf1ba2a24862E8c2d917662",
+  "tokenId": "11",
+  "rewards": "0x7517287ac3fc221fa02840dfb1d1ab8b9bd31904",
+  "stockReceived": "700000000000000",
+  "batchIds": [
+    "13"
+  ],
+  "transactions": [
+    {
+      "label": "SMOKE_MINT",
+      "hash": "0x14a27e00f8893222601f122863a3dbc64b8a4e3fa055c3aa99ee82c932741212",
+      "block": "129378031"
+    },
+    {
+      "label": "SMOKE_APPROVE",
+      "hash": "0x424f1735236bf28aaef37124efc37f29c4e201a4cea66d10184adfbe94629241",
+      "block": "129378051"
+    },
+    {
+      "label": "SMOKE_LIGHT",
+      "hash": "0xa0c0179504d3337563dd21b825fedd3d62222bbaaff420f9c0846ae9f343e7aa",
+      "block": "129378076"
+    },
+    {
+      "label": "SMOKE_TRADE",
+      "hash": "0x8500c0aa5cf72b8073ea8eb85c139aacc3c51220cc264efa1b120c4fd18e84a4",
+      "block": "129378106"
+    },
+    {
+      "label": "SMOKE_CLAIM",
+      "hash": "0xcecb16362f954aeef97496aa7870a446d500837c969d8dfa3b844319582c17ec",
+      "block": "129379806"
+    },
+    {
+      "label": "CYCLE",
+      "hash": "0x82cb28f1d778baf2145e94d068667ba144f0b70ef52591200efe998938eb46ba",
+      "block": "129378190",
+      "feeSplits": [
+        {
+          "timestamp": "1791220699",
+          "fees": "1000000000000",
+          "rewardsEth": "700000000000",
+          "liquidityEth": "200000000000",
+          "teamEth": "100000000000"
+        }
+      ]
+    }
+  ],
+  "verifiedAt": "2026-10-05T17:24:21.987Z",
+  "scope": "Existing Robinhood testnet TestExchange and legacy proof claims",
+  "workflowRuns": [
+    "https://github.com/bakhi107/deedz-packages/actions/runs/37347804640",
+    "https://github.com/bakhi107/deedz-packages/actions/runs/37348015946"
+  ],
+  "repeatRun": {
+    "status": "success",
+    "newTradeTransactions": 0,
+    "newClaimTransactions": 0,
+    "smokeTransactionCount": 5
+  }
+}
