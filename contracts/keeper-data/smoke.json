@@ -8,6 +8,10 @@
     {
       "label": "SMOKE_MINT",
       "hash": "0x14a27e00f8893222601f122863a3dbc64b8a4e3fa055c3aa99ee82c932741212"
+    },
+    {
+      "label": "SMOKE_APPROVE",
+      "hash": "0x424f1735236bf28aaef37124efc37f29c4e201a4cea66d10184adfbe94629241"
     }
   ],
   "tokenId": "11"
