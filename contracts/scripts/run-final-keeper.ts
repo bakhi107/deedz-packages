@@ -1,12 +1,12 @@
 // @ts-nocheck
 import { network } from "hardhat";
 import { StandardMerkleTree } from "@openzeppelin/merkle-tree";
-import { mkdir, readFile, writeFile } from "node:fs/promises";
-import { resolve } from "node:path";
+import { createRewardJournal, rewardEligible } from "./testnet-keeper-state.mjs";
 import { getAddress, isAddress } from "viem";
 
 const { viem } = await network.create({ network: "robinhoodTestnet", chainType: "generic" });
 const client = await viem.getPublicClient(); const [wallet] = await viem.getWalletClients();
+if (await client.getChainId() !== 46630) throw Error("Robinhood testnet only");
 const deed = await viem.getContractAt("contracts/final/Deed.sol:Deed", env("FINAL_DEED"));
 const processor = await viem.getContractAt("FeeProcessor", env("FINAL_PROCESSOR"));
 const rewards = await viem.getContractAt("StockRewards", env("FINAL_REWARDS"));
@@ -14,6 +14,8 @@ const exchange = await viem.getContractAt("TestExchange", env("FINAL_EXCHANGE"))
 const liquidity = await viem.getContractAt("ProtocolLiquidityManager", env("FINAL_LIQUIDITY_MANAGER"));
 if ((await processor.read.keeper()).toLowerCase() !== wallet.account.address.toLowerCase()) throw new Error("Configured key is not the keeper");
 
+const journal = createRewardJournal({ rewardsAddress: rewards.address });
+await journal.recover(client, rewards);
 const block = await client.getBlock(); const last = await processor.read.lastCycleAt(); const interval = await processor.read.INTERVAL();
 const fees = await processor.read.queuedTradingFees();
 if (block.timestamp < last + interval) { console.log(`SKIP: cycle ready at ${last + interval}`); process.exit(0); }
@@ -22,7 +24,7 @@ if (fees === 0n) { console.log("SKIP: no trading fees queued"); process.exit(0);
 const groups = new Map<string, { ticker: `0x${string}`; tokens: { id: bigint; owner: `0x${string}` }[] }>();
 const totalMinted = await deed.read.totalMinted();
 for (let id = 1n; id <= totalMinted; ++id) {
-  if (await deed.read.stateOf([id]) !== 1) continue;
+  if (!rewardEligible(await deed.read.stateOf([id]))) continue;
   const [data, owner] = await Promise.all([deed.read.deedData([id]), deed.read.ownerOf([id])]);
   const ticker = data.ticker;
   if (!ticker) throw new Error(`Deed ${id}: ticker missing from deedData`);
@@ -52,15 +54,11 @@ for (let index = 0; index < populated.length; ++index) {
   manifests.push({ id: nextBatch.toString(), ticker: group.ticker, root: tree.root, claims }); nextBatch += 1n;
 }
 
-const hash = await processor.write.processCycle([allocations]);
-const receipt = await client.waitForTransactionReceipt({ hash }); if (receipt.status !== "success") throw new Error(`Cycle failed: ${hash}`);
-await reinvestLiquidity();
-const path = resolve(process.cwd(), "keeper-data/rewards.json"); await mkdir(resolve(process.cwd(), "keeper-data"), { recursive: true });
-let history = { chainId: 46630, rewards: rewards.address.toLowerCase(), batches: [] as any[] };
-try { const stored = JSON.parse(await readFile(path, "utf8")); if (stored.rewards === history.rewards) history = stored; } catch {}
-history.batches.push(...manifests.map((batch) => ({ ...batch, transaction: hash, createdAt: new Date().toISOString() })));
-await writeFile(path, JSON.stringify(history, null, 2) + "\n");
+// Simulate first, then persist proofs before any broadcast.
+await client.simulateContract({address:processor.address,abi:processor.abi,functionName:"processCycle",args:[allocations],account:wallet.account});
+const hash = await journal.execute({client,rewards,batches:manifests,submit:()=>processor.write.processCycle([allocations])});
 console.log(`CYCLE_OK ${hash}; batches ${firstBatch}-${nextBatch - 1n}`);
+await reinvestLiquidity();
 
 function env(name: string) { const value = process.env[name]; if (!value || !isAddress(value)) throw new Error(`${name} missing`); return getAddress(value); }
 async function reinvestLiquidity() {
