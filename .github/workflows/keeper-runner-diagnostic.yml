@@ -1,0 +1,19 @@
+name: Keeper runner availability diagnostic
+
+on:
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  runner-ready:
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [ubuntu-latest, ubuntu-22.04]
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 3
+    steps:
+      - name: Record runner readiness
+        shell: bash
+        run: date -u '+Runner ready at %Y-%m-%dT%H:%M:%SZ'
