@@ -1,0 +1,13 @@
+{
+  "chainId": 46630,
+  "rewards": "0x7517287ac3fc221fa02840dfb1d1ab8b9bd31904",
+  "account": "0xB174D2D54F30dEdDEcf1ba2a24862E8c2d917662",
+  "phase": "prepare",
+  "firstBatch": "13",
+  "transactions": [
+    {
+      "label": "SMOKE_MINT",
+      "hash": "0x14a27e00f8893222601f122863a3dbc64b8a4e3fa055c3aa99ee82c932741212"
+    }
+  ]
+}
