@@ -227,6 +227,22 @@
       ],
       "transaction": "0x82cb28f1d778baf2145e94d068667ba144f0b70ef52591200efe998938eb46ba",
       "createdAt": "2026-10-05T17:18:17.510Z"
+    },
+    {
+      "id": "14",
+      "ticker": "0x4e56444100000000000000000000000000000000000000000000000000000000",
+      "root": "0x68aa5aa09a6b622fae7a72ba51fdf7025a2e37ecfa7bdc2ab0ac82071886451c",
+      "claims": [
+        {
+          "batchId": "14",
+          "tokenId": "11",
+          "account": "0xB174D2D54F30dEdDEcf1ba2a24862E8c2d917662",
+          "amount": "3213557569537000",
+          "proof": []
+        }
+      ],
+      "transaction": "0xbad9d2a2d2f2e3697114039f17d32ec64327b7b927165d140b70ad35d5fe4628",
+      "createdAt": "2026-10-05T20:42:19.257Z"
     }
   ]
 }
