@@ -1,0 +1,22 @@
+{
+  "chainId": 46630,
+  "rewards": "0x7517287ac3fc221fa02840dfb1d1ab8b9bd31904",
+  "batches": [
+    {
+      "id": "14",
+      "ticker": "0x4e56444100000000000000000000000000000000000000000000000000000000",
+      "root": "0x68aa5aa09a6b622fae7a72ba51fdf7025a2e37ecfa7bdc2ab0ac82071886451c",
+      "claims": [
+        {
+          "batchId": "14",
+          "tokenId": "11",
+          "account": "0xB174D2D54F30dEdDEcf1ba2a24862E8c2d917662",
+          "amount": "3213557569537000",
+          "proof": []
+        }
+      ]
+    }
+  ],
+  "hash": null,
+  "createdAt": "2026-10-05T20:42:19.257Z"
+}
