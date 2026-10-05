@@ -12,6 +12,10 @@
     {
       "label": "SMOKE_APPROVE",
       "hash": "0x424f1735236bf28aaef37124efc37f29c4e201a4cea66d10184adfbe94629241"
+    },
+    {
+      "label": "SMOKE_LIGHT",
+      "hash": "0xa0c0179504d3337563dd21b825fedd3d62222bbaaff420f9c0846ae9f343e7aa"
     }
   ],
   "tokenId": "11"
