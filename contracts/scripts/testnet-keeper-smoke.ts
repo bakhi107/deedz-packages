@@ -2,7 +2,7 @@
 import { network } from 'hardhat';
 import { getAddress, isAddress, stringToHex, parseEther } from 'viem';
 import { existsSync, readFileSync, writeFileSync, renameSync, mkdirSync } from 'node:fs';
-import { persistKeeperData } from './testnet-keeper-state.mjs';
+import { persistKeeperData, waitForKeeperReceipt } from './testnet-keeper-state.mjs';
 
 if (process.env.DEEDZ_TESTNET_SMOKE !== '1') throw Error('Explicit testnet smoke flag required');
 const {viem}=await network.create({network:'robinhoodTestnet',chainType:'generic'});
@@ -21,7 +21,7 @@ const file='keeper-data/smoke.json';mkdirSync('keeper-data',{recursive:true});
 let state=existsSync(file)?JSON.parse(readFileSync(file,'utf8')):{chainId:46630,rewards:rewards.address.toLowerCase(),account:getAddress(account),phase:'prepare',firstBatch:String(await rewards.read.batchCount()),transactions:[]};
 if(state.chainId!==46630||state.rewards!==rewards.address.toLowerCase()||state.account!==getAddress(account))throw Error('Smoke state belongs to another deployment');
 function save(){writeFileSync(file+'.tmp',JSON.stringify(state,null,2)+'\n');renameSync(file+'.tmp',file);persistKeeperData();}
-async function mined(label,send){const hash=await send();const receipt=await client.waitForTransactionReceipt({hash});if(receipt.status!=='success')throw Error(label+' reverted');state.transactions.push({label,hash});save();console.log(label+' '+hash);}
+async function mined(label,send){const hash=await send();const receipt=await waitForKeeperReceipt(client,hash);if(receipt.status!=='success')throw Error(label+' reverted');state.transactions.push({label,hash});save();console.log(label+' '+hash);}
 
 if((process.env.DEEDZ_SMOKE_PHASE??'prepare')==='prepare'){
   if(state.phase!=='prepare'){console.log('SMOKE_ALREADY_SEEDED: verifying existing test on this run');process.exit(0);}

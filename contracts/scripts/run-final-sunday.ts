@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { network } from "hardhat";
 import { StandardMerkleTree } from "@openzeppelin/merkle-tree";
-import { createRewardJournal, rewardEligible } from "./testnet-keeper-state.mjs";
+import { createRewardJournal, rewardEligible, waitForKeeperReceipt } from "./testnet-keeper-state.mjs";
 import { getAddress, isAddress } from "viem";
 
 const { viem } = await network.create({ network: "robinhoodTestnet", chainType: "generic" });
@@ -36,5 +36,5 @@ for (let week = 0n; week < currentWeek; ++week) {
   const hash=await journal.execute({client,rewards,batches:[{id:batchId.toString(),ticker:winner,root:tree.root,claims,kind:"Sunday",week:week.toString()}],submit:()=>settlement.write.settle(args)});
   console.log(`SUNDAY_OK week=${week} ${hash}`);
 }
-async function mined(promise: Promise<`0x${string}`>) { const hash = await promise; const receipt = await client.waitForTransactionReceipt({ hash }); if (receipt.status !== "success") throw new Error(`Transaction failed: ${hash}`); }
+async function mined(promise: Promise<`0x${string}`>) { const hash = await promise; const receipt = await waitForKeeperReceipt(client, hash); if (receipt.status !== "success") throw new Error(`Transaction failed: ${hash}`); }
 function env(name:string) { const value=process.env[name]; if(!value||!isAddress(value)) throw new Error(`${name} missing`); return getAddress(value); }

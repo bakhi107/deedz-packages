@@ -4,6 +4,24 @@ import { execFileSync } from 'node:child_process';
 
 export const rewardEligible = (state) => Number(state) === 1 || Number(state) === 2;
 
+// Robinhood RPC nodes can briefly disagree about a just-mined receipt. Poll the
+// same hash instead of sending another transaction when a node is behind.
+export async function waitForKeeperReceipt(client, hash, { timeoutMs = 120_000, intervalMs = 2_000, sleep = ms => new Promise(done => setTimeout(done, ms)) } = {}) {
+  const deadline = Date.now() + timeoutMs;
+  let lastError;
+  while (true) {
+    try {
+      const receipt = await client.getTransactionReceipt({ hash });
+      if (receipt) return receipt;
+    } catch (error) {
+      if (!['TransactionReceiptNotFoundError', 'HttpRequestError', 'TimeoutError', 'RpcRequestError'].includes(error.name)) throw error;
+      lastError = error;
+    }
+    if (Date.now() >= deadline) throw Error('Receipt still unavailable for ' + hash + '; do not resubmit blindly', { cause: lastError });
+    await sleep(intervalMs);
+  }
+}
+
 // Only public reward data is committed. No keys or environment files enter this directory.
 export function persistKeeperData() {
   if (process.env.GITHUB_ACTIONS === 'true' && process.env.DEEDZ_KEEPER_PERSIST_GIT !== '1') {
@@ -73,7 +91,7 @@ export function createRewardJournal({ rewardsAddress, directory = 'keeper-data',
     persist(); // This MUST finish before submit, including on ephemeral GitHub runners.
     const hash = await submit();
     prepared.hash = hash; atomic(pending, prepared); persist();
-    const receipt = await client.waitForTransactionReceipt({ hash });
+    const receipt = await waitForKeeperReceipt(client, hash);
     if (receipt.status !== 'success') throw Error('Reward transaction reverted: ' + hash);
     await publish(rewards, prepared);
     return hash;

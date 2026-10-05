@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { mkdtempSync, rmSync, readFileSync, existsSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve, sep } from 'node:path';
-import { createRewardJournal, rewardEligible } from './testnet-keeper-state.mjs';
+import { createRewardJournal, rewardEligible, waitForKeeperReceipt } from './testnet-keeper-state.mjs';
 const address = '0x1234', hash = '0xabc', root = '0xdef';
 const batches = [{ id:'0', root, claims:[{ amount:'7' }] }];
 function fixture(t, persist=()=>{}) {
@@ -11,7 +11,7 @@ function fixture(t, persist=()=>{}) {
   t.after(()=>{assert.ok(resolve(directory).startsWith(resolve(tmpdir())+sep));rmSync(directory,{recursive:true,force:true});});
   let count=0n;
   const rewards={read:{batchCount:async()=>count,batches:async()=>['ticker','token',root,7n]}};
-  const client={waitForTransactionReceipt:async()=>({status:'success'}),getTransactionReceipt:async()=>null};
+  const client={getTransactionReceipt:async()=>({status:'success'})};
   return {directory,rewards,client,journal:createRewardJournal({rewardsAddress:address,directory,persist}),fund:()=>{count=1n;}};
 }
 test('Lit and grace qualify; Dormant and Dark do not',()=>{assert.deepEqual([0,1,2,3].map(rewardEligible),[false,true,true,false]);});
@@ -49,4 +49,13 @@ test('mismatched on-chain root is never published',async t=>{
   const f=fixture(t);f.rewards.read.batches=async()=>['ticker','token','0xwrong',7n];
   await assert.rejects(f.journal.execute({...f,batches,submit:async()=>{f.fund();return hash;}}),/does not match/);
   assert.equal(existsSync(join(f.directory,'rewards.json')),false);
+});
+test('receipt lag retries the same transaction without resubmitting',async t=>{
+  let reads=0;
+  const receipt={status:'success'};
+  const client={getTransactionReceipt:async({hash:requested})=>{assert.equal(requested,hash);if(++reads<3){const error=Error('RPC replica behind');error.name='TransactionReceiptNotFoundError';throw error;}return receipt;}};
+  assert.equal(await waitForKeeperReceipt(client,hash,{sleep:async()=>{}}),receipt);assert.equal(reads,3);
+});
+test('receipt polling is bounded and preserves the hash on timeout',async()=>{
+  await assert.rejects(waitForKeeperReceipt({getTransactionReceipt:async()=>null},hash,{timeoutMs:0}),/0xabc.*do not resubmit/);
 });

@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { network } from "hardhat";
 import { StandardMerkleTree } from "@openzeppelin/merkle-tree";
-import { createRewardJournal, rewardEligible } from "./testnet-keeper-state.mjs";
+import { createRewardJournal, rewardEligible, waitForKeeperReceipt } from "./testnet-keeper-state.mjs";
 import { getAddress, isAddress } from "viem";
 
 const { viem } = await network.create({ network: "robinhoodTestnet", chainType: "generic" });
@@ -65,5 +65,5 @@ async function reinvestLiquidity() {
   const eth = await client.getBalance({ address: liquidity.address }); if (eth < 1_000n) return;
   const token = await viem.getContractAt("RentToken", env("FINAL_RENT")); const rentBalance = await token.read.balanceOf([liquidity.address]); if (rentBalance === 0n) return;
   const block = await client.getBlock(); const tx = await liquidity.write.reinvest([eth / 2n, 1n, eth, rentBalance, 1n, block.timestamp + 900n]);
-  const receipt = await client.waitForTransactionReceipt({ hash: tx }); if (receipt.status !== "success") throw new Error(`Liquidity reinvest failed: ${tx}`);
+  const receipt = await waitForKeeperReceipt(client, tx); if (receipt.status !== "success") throw new Error(`Liquidity reinvest failed: ${tx}`);
 }
