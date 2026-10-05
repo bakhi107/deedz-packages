@@ -20,6 +20,10 @@
     {
       "label": "SMOKE_TRADE",
       "hash": "0x8500c0aa5cf72b8073ea8eb85c139aacc3c51220cc264efa1b120c4fd18e84a4"
+    },
+    {
+      "label": "SMOKE_CLAIM",
+      "hash": "0xcecb16362f954aeef97496aa7870a446d500837c969d8dfa3b844319582c17ec"
     }
   ],
   "tokenId": "11",
