@@ -16,6 +16,10 @@
     {
       "label": "SMOKE_LIGHT",
       "hash": "0xa0c0179504d3337563dd21b825fedd3d62222bbaaff420f9c0846ae9f343e7aa"
+    },
+    {
+      "label": "SMOKE_TRADE",
+      "hash": "0x8500c0aa5cf72b8073ea8eb85c139aacc3c51220cc264efa1b120c4fd18e84a4"
     }
   ],
   "tokenId": "11",
