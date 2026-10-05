@@ -2,7 +2,7 @@
   "chainId": 46630,
   "rewards": "0x7517287ac3fc221fa02840dfb1d1ab8b9bd31904",
   "account": "0xB174D2D54F30dEdDEcf1ba2a24862E8c2d917662",
-  "phase": "seeded",
+  "phase": "verified",
   "firstBatch": "13",
   "transactions": [
     {
@@ -27,5 +27,7 @@
     }
   ],
   "tokenId": "11",
-  "stockBefore": "0"
+  "stockBefore": "0",
+  "stockReceived": "700000000000000",
+  "verifiedAt": "2026-10-05T17:22:33.978Z"
 }
