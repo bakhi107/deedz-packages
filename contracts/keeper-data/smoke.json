@@ -2,7 +2,7 @@
   "chainId": 46630,
   "rewards": "0x7517287ac3fc221fa02840dfb1d1ab8b9bd31904",
   "account": "0xB174D2D54F30dEdDEcf1ba2a24862E8c2d917662",
-  "phase": "prepare",
+  "phase": "seeded",
   "firstBatch": "13",
   "transactions": [
     {
