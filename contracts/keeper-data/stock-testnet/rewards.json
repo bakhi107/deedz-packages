@@ -41,6 +41,48 @@
       "funded": "348706637637",
       "transaction": "0xdbd663c4d9ab844afeec1b5d387a40c24345bdcd3d071539fd4c66f13cabbfbe",
       "createdAt": "2026-10-06T15:32:33.915Z"
+    },
+    {
+      "id": "2",
+      "ticker": "0x414d440000000000000000000000000000000000000000000000000000000000",
+      "root": "0xf3b4ed2ba3cb19af6e5c3a51c0e7a99d4e299d2e47943f428bcb83d2e3772062",
+      "mode": "shares",
+      "holderCount": 1,
+      "claims": [
+        {
+          "batchId": "2",
+          "tokenId": "2",
+          "account": "0xC878Cc072aC3a869A938A99DA404D25850835a20",
+          "shareIndex": "0",
+          "proof": [],
+          "amount": "1742311149"
+        }
+      ],
+      "snapshotBlock": "130035649",
+      "funded": "1742311149",
+      "transaction": "0xb0e2e1a7bcd5aa17425f35c72f426243b04fa473c2f75bc9d3fe243acb0c5ac8",
+      "createdAt": "2026-10-06T19:02:11.484Z"
+    },
+    {
+      "id": "3",
+      "ticker": "0x4e56444100000000000000000000000000000000000000000000000000000000",
+      "root": "0x4ce9f472ba059a879953ab493d3d6c575a0c0f6ba27b390c7f4ee6b32e8c0db2",
+      "mode": "shares",
+      "holderCount": 1,
+      "claims": [
+        {
+          "batchId": "3",
+          "tokenId": "1",
+          "account": "0xB174D2D54F30dEdDEcf1ba2a24862E8c2d917662",
+          "shareIndex": "0",
+          "proof": [],
+          "amount": "1742311149"
+        }
+      ],
+      "snapshotBlock": "130035649",
+      "funded": "1742311149",
+      "transaction": "0xb0e2e1a7bcd5aa17425f35c72f426243b04fa473c2f75bc9d3fe243acb0c5ac8",
+      "createdAt": "2026-10-06T19:02:11.484Z"
     }
   ],
   "chainId": 46630,
