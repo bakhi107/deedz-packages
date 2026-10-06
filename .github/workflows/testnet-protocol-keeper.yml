@@ -45,7 +45,7 @@ jobs:
         run: test -n "$PRIVATE_KEY"
       - run: npm ci --no-audit --no-fund
       - run: npm run compile
-      - run: node --test scripts/testnet-keeper-state.test.mjs
+      - run: node --test scripts/testnet-keeper-state.test.mjs scripts/stock/rpc-read-retry.test.mjs
       - name: Configure durable keeper checkpoints
         run: |
           git config user.name "deedz-keeper"

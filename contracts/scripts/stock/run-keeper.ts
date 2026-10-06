@@ -4,6 +4,7 @@ import { createPublicClient, createWalletClient, getContract, http, getAddress }
 import { privateKeyToAccount } from "viem/accounts";
 import { readFileSync, mkdirSync, existsSync, openSync, writeFileSync, closeSync, unlinkSync } from "node:fs";
 import { resolve } from "node:path";
+import { withRpcReadRetry } from "./rpc-read-retry.mjs";
 import { planCycle, planSunday, planLiquidity, registerRewardClaims } from "./keeper.js";
 import { createRewardJournal, waitForKeeperReceipt } from "../testnet-keeper-state.mjs";
 
@@ -12,7 +13,10 @@ if (!path) throw Error("Set DEEDZ_STOCK_MANIFEST to the deployed suite manifest"
 const manifest = JSON.parse(readFileSync(path, "utf8"));
 if (manifest.status !== "deployed") throw Error("Deployment is incomplete");
 const execute = process.env.DEEDZ_KEEPER_EXECUTE === "1";
-const client = createPublicClient({ cacheTime: 0, transport: http(manifest.rpcUrl, { timeout: 20_000, retryCount: 2 }) });
+const rpc = http(manifest.rpcUrl, { timeout: 20_000, retryCount: 2 });
+const client = createPublicClient({ cacheTime: 0, transport: options => {
+  const transport = rpc(options); return { ...transport, request: withRpcReadRetry(transport.request) };
+} });
 if (await client.getChainId() !== manifest.chainId || ![4663, 46630].includes(manifest.chainId)) throw Error("Wrong Robinhood chain");
 if (manifest.fork || manifest.localChainId === 31337) throw Error("Refusing fork manifest on a live network");
 if (manifest.chainId === 4663 && manifest.testnet) throw Error("Refusing testnet dependencies on mainnet");
