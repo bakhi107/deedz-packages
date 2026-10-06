@@ -43,11 +43,19 @@
     "verify:v4-testnet": "hardhat run --no-compile scripts/verify-v4-testnet.ts",
     "smoke:core-testnet": "hardhat run scripts/smoke-core-testnet.ts",
     "prepare:test-wallet": "hardhat run scripts/prepare-test-wallet.ts",
-    "clean": "hardhat clean"
+    "clean": "hardhat clean",
+    "test:stock": "hardhat test nodejs --config hardhat.stock.config.ts test/StockExecution.ts test/StockClaims.ts test/FinalProtocol.ts",
+    "test:stock-fork": "hardhat run --config hardhat.stock.config.ts scripts/stock/fork-test.ts",
+    "operate:stock-keeper": "hardhat run --no-compile scripts/stock/run-keeper.ts",
+    "test:oracle": "hardhat test nodejs --config hardhat.stock.config.ts test/ChainlinkOracle.ts",
+    "test:oracle-fork": "hardhat run --config hardhat.stock.config.ts scripts/stock/oracle-fork-test.ts",
+    "deploy:stock-testnet": "hardhat run --no-compile scripts/stock/deploy-testnet-stock.ts",
+    "test:stock-testnet-fork": "hardhat run --config hardhat.stock.config.ts scripts/stock/verify-testnet-stock-fork.ts"
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox-viem": "latest",
     "@openzeppelin/contracts": "^5.6.1",
+    "@uniswap/v3-core": "^1.0.1",
     "@uniswap/v4-core": "^1.0.2",
     "@uniswap/v4-periphery": "^1.0.3",
     "dotenv": "^17.4.2",

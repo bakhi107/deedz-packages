@@ -59,3 +59,24 @@ test('receipt lag retries the same transaction without resubmitting',async t=>{
 test('receipt polling is bounded and preserves the hash on timeout',async()=>{
   await assert.rejects(waitForKeeperReceipt({getTransactionReceipt:async()=>null},hash,{timeoutMs:0}),/0xabc.*do not resubmit/);
 });
+
+test('share recovery publishes actual funded units, including rounding, after a lost runner',async t=>{
+  let checkpoints=0;
+  const f=fixture(t,()=>{if(++checkpoints===2)throw Error('lost runner');});
+  f.rewards.read.batchSize=async()=>3n;
+  const shares=[{id:'0',root,mode:'shares',holderCount:3,claims:[0,1,2].map(i=>({shareIndex:String(i),tokenId:String(i+1)}))}];
+  await assert.rejects(f.journal.execute({...f,batches:shares,submit:async()=>{f.fund();return hash;}}),/lost runner/);
+  const restarted=createRewardJournal({rewardsAddress:address,directory:f.directory,persist:()=>{}});
+  await restarted.recover(f.client,f.rewards);
+  const result=JSON.parse(readFileSync(join(f.directory,'rewards.json'),'utf8'));
+  assert.deepEqual(result.batches[0].claims.map(c=>c.amount),['2','2','3']);
+  assert.equal(result.batches[0].funded,'7');
+  assert.equal(existsSync(join(f.directory,'pending.json')),false);
+});
+
+test('malformed saved shares cannot publish credits',async t=>{
+  const f=fixture(t);f.rewards.read.batchSize=async()=>2n;
+  const invalid=[{id:'0',root,mode:'shares',holderCount:2,claims:[{shareIndex:'0'},{shareIndex:'0'}]}];
+  await assert.rejects(f.journal.execute({...f,batches:invalid,submit:async()=>{f.fund();return hash;}}),/Invalid saved share/);
+  assert.equal(existsSync(join(f.directory,'rewards.json')),false);
+});

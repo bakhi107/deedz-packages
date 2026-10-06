@@ -14,7 +14,7 @@ contract EthUsdOracleV6 {
     }
     function latestPriceUsd6() external view returns (uint256 price, uint256 updatedAt) {
         (uint80 round, int256 answer,, uint256 timestamp, uint80 answeredInRound) = feed.latestRoundData();
-        require(answer > 0 && timestamp != 0 && timestamp <= block.timestamp && answeredInRound >= round, "Invalid oracle round");
+        require(round != 0 && answer > 0 && timestamp != 0 && timestamp <= block.timestamp && answeredInRound >= round, "Invalid oracle round");
         price = decimals >= 6 ? uint256(answer) / 10 ** (decimals - 6) : uint256(answer) * 10 ** (6 - decimals);
         require(price != 0, "Oracle rounds to zero"); updatedAt = timestamp;
     }

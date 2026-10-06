@@ -1,0 +1,916 @@
+{
+  "chainId": 46630,
+  "rpcUrl": "https://rpc.testnet.chain.robinhood.com",
+  "testnet": true,
+  "status": "deployed",
+  "deployer": "0xB174D2D54F30dEdDEcf1ba2a24862E8c2d917662",
+  "keeper": "0xB174D2D54F30dEdDEcf1ba2a24862E8c2d917662",
+  "team": "0xB174D2D54F30dEdDEcf1ba2a24862E8c2d917662",
+  "limitations": [
+    "Test stock tokens and synthetic ETH/USD feed have no monetary value.",
+    "V3 pool bytecode is real; this is a separate test venue, not the mainnet Pons venue.",
+    "Existing NFTs and balances remain on the previous deployment."
+  ],
+  "contracts": {
+    "rent": "0x6F3539ca09035E172770b1de88b34F6Cf75139BB",
+    "weth": "0xc1F8aA9F8Ec6E03a636B05Ce9e2a7FE22B824BD8",
+    "usdg": "0x20b3f5E4689f503f8d23ee9331B7fF03Dd815B15",
+    "factory": "0x175990989d6cD150FcaDf2c46115e8CEDF6B328a",
+    "seeder": "0x8ab372BD7f49533e35e67eEE6FFD2b4049BF196D",
+    "testFeed": "0x93e32F5e2b31A7Fc93cB67e20Cc5B70504073388",
+    "oracle": "0x98dB2c74E8219F5346AC29BFC15eb05A7aa7eE1a",
+    "adapter": "0xe116c1f535A4D848fff7c1f02E0CE7561AF8F074",
+    "treasury": "0xa4Fb3601140Ac93CD1bcc37302ceB9715824f160",
+    "rewards": "0x6c6aF3864e9C54573A91cB5eccb5d9bf976f1d59",
+    "liquidity": "0xF65E23a9c4506d43dEFDB979E3d97D0BBF97D188",
+    "processor": "0x776E41A6058e7D6C7Cc5ddCC8aAB6634E432150e",
+    "settlement": "0xF9d9D144BB53F847Bd79cAABF09De7dc32Cd0ebf",
+    "deed": "0x475525168611930Ade5F291BFF03C037f602A1d1",
+    "faucet": "0xfb224b665Ea88C6F0d664fE7207B8cC1D966e3a9",
+    "art": "0xF15781443c09a100d99042D4efe880f7795D5aC1",
+    "stockNVDA": "0x82219e4636D0cFf723eA6C474B940F928bBdA8e7",
+    "stockTSLA": "0x9DF1c8CDa0d7fE3fC170EB145BC7cD503229813D",
+    "stockAAPL": "0x82280d5eC0A68E0641AE4130EE6c38F7f1B20450",
+    "stockMSFT": "0xD4a32F59982348B59DF1f0F8A2E82601139d0C88",
+    "stockAMZN": "0x64d4B37f4A5216291B7b5b7F3dCeF1Dbeb417E76",
+    "stockMETA": "0x61B1ddAd0e69865c1BDCE07596aaE3aac9991B30",
+    "stockGOOGL": "0xf06D001A4c68cc81F26Ed6D764f6698d62585068",
+    "stockNFLX": "0x53e32bcf6e0f126774089043c18d673F76453Db4",
+    "stockAMD": "0x6eE7890dEDcd2b855e23c2729c9476090008a769",
+    "stockCOIN": "0x0216452Ab659aa1840530dE940aE0D4726844965",
+    "hook": "0xE3684fBaFaBC1c037bd446Cd4c36b67247f20080",
+    "router": "0x5e89DAdbBdDfc991184b0ce4A3EBb53902E43E82"
+  },
+  "infrastructure": {
+    "fundingPool": "0x998e42B1D3C298015C07d6A9dA74A7634C5B2D54",
+    "poolManager": "0x8366a39CC670B4001A1121B8F6A443A643e40951",
+    "stateView": "0xF3334192D15450CdD385c8B70e03f9A6bD9E673b",
+    "create2": "0x4e59b44847b379578588920cA78FbF26c0B4956C",
+    "liquidityRouter": "0xE656314aB252d0457934A0a336Ef8E5A1157BAd5"
+  },
+  "testAssets": {
+    "feed": "0x93e32F5e2b31A7Fc93cB67e20Cc5B70504073388",
+    "weth": "0xc1F8aA9F8Ec6E03a636B05Ce9e2a7FE22B824BD8",
+    "usdg": "0x20b3f5E4689f503f8d23ee9331B7fF03Dd815B15",
+    "factory": "0x175990989d6cD150FcaDf2c46115e8CEDF6B328a",
+    "stocks": {
+      "NVDA": "0x82219e4636D0cFf723eA6C474B940F928bBdA8e7",
+      "TSLA": "0x9DF1c8CDa0d7fE3fC170EB145BC7cD503229813D",
+      "AAPL": "0x82280d5eC0A68E0641AE4130EE6c38F7f1B20450",
+      "MSFT": "0xD4a32F59982348B59DF1f0F8A2E82601139d0C88",
+      "AMZN": "0x64d4B37f4A5216291B7b5b7F3dCeF1Dbeb417E76",
+      "META": "0x61B1ddAd0e69865c1BDCE07596aaE3aac9991B30",
+      "GOOGL": "0xf06D001A4c68cc81F26Ed6D764f6698d62585068",
+      "NFLX": "0x53e32bcf6e0f126774089043c18d673F76453Db4",
+      "AMD": "0x6eE7890dEDcd2b855e23c2729c9476090008a769",
+      "COIN": "0x0216452Ab659aa1840530dE940aE0D4726844965"
+    }
+  },
+  "stocks": [
+    {
+      "ticker": "NVDA",
+      "token": "0x82219e4636D0cFf723eA6C474B940F928bBdA8e7",
+      "pool": "0x79A1477EfBDd02C0a33A43C2dA16175FFA6B842B",
+      "viaUSDG": false,
+      "testAsset": true
+    },
+    {
+      "ticker": "TSLA",
+      "token": "0x9DF1c8CDa0d7fE3fC170EB145BC7cD503229813D",
+      "pool": "0x0669D1B417964885FD068364578309cb93abE6b0",
+      "viaUSDG": true,
+      "testAsset": true
+    },
+    {
+      "ticker": "AAPL",
+      "token": "0x82280d5eC0A68E0641AE4130EE6c38F7f1B20450",
+      "pool": "0x953c3B68f961D88B077BbD48A63D955aBb2a367c",
+      "viaUSDG": false,
+      "testAsset": true
+    },
+    {
+      "ticker": "MSFT",
+      "token": "0xD4a32F59982348B59DF1f0F8A2E82601139d0C88",
+      "pool": "0xB4A2D02BdBcD2Ac437bcc4D358B6a4Eb7aDD4A7f",
+      "viaUSDG": true,
+      "testAsset": true
+    },
+    {
+      "ticker": "AMZN",
+      "token": "0x64d4B37f4A5216291B7b5b7F3dCeF1Dbeb417E76",
+      "pool": "0xaae67872B65a53F9c10F6193a5e0e95a36D62f4e",
+      "viaUSDG": false,
+      "testAsset": true
+    },
+    {
+      "ticker": "META",
+      "token": "0x61B1ddAd0e69865c1BDCE07596aaE3aac9991B30",
+      "pool": "0x1737a50735987Ff5f479cD1C204490F7B24ef95a",
+      "viaUSDG": true,
+      "testAsset": true
+    },
+    {
+      "ticker": "GOOGL",
+      "token": "0xf06D001A4c68cc81F26Ed6D764f6698d62585068",
+      "pool": "0xF0AA591B2f3c77912F4858B085D3f61E31e1b5A3",
+      "viaUSDG": false,
+      "testAsset": true
+    },
+    {
+      "ticker": "NFLX",
+      "token": "0x53e32bcf6e0f126774089043c18d673F76453Db4",
+      "pool": "0xB560ADcb647690f3012fE2e03326223A1F192628",
+      "viaUSDG": true,
+      "testAsset": true
+    },
+    {
+      "ticker": "AMD",
+      "token": "0x6eE7890dEDcd2b855e23c2729c9476090008a769",
+      "pool": "0x9C5520d61E8Cf9cBf4b8A0b3Ca3ef293eAD50Bc6",
+      "viaUSDG": false,
+      "testAsset": true
+    },
+    {
+      "ticker": "COIN",
+      "token": "0x0216452Ab659aa1840530dE940aE0D4726844965",
+      "pool": "0xC83128edAD4d4Ea9eED5E078bD01eF7C791aC459",
+      "viaUSDG": true,
+      "testAsset": true
+    }
+  ],
+  "operations": {
+    "deploy:rent": {
+      "hash": "0x740125c33d8dc140579ab7002e2c4af8fb288e04cf96fc8553938116cb1ce5fe",
+      "nonce": 892,
+      "status": "confirmed",
+      "blockNumber": "129863340",
+      "contractAddress": "0x6F3539ca09035E172770b1de88b34F6Cf75139BB"
+    },
+    "deploy:weth": {
+      "hash": "0x7a6bc4c85cbb777cea05dbb9e542860cf559b26c428840a51cdee2b5ffcda4e2",
+      "nonce": 893,
+      "status": "confirmed",
+      "blockNumber": "129863382",
+      "contractAddress": "0xc1F8aA9F8Ec6E03a636B05Ce9e2a7FE22B824BD8"
+    },
+    "deploy:usdg": {
+      "hash": "0x54676ab31cc4fdbfb64e196a03725a869b10376bd05ce361760dd7b6ed360f1b",
+      "nonce": 894,
+      "status": "confirmed",
+      "blockNumber": "129863421",
+      "contractAddress": "0x20b3f5E4689f503f8d23ee9331B7fF03Dd815B15"
+    },
+    "deploy:factory": {
+      "hash": "0x3753a72e9f9b1c9606091fe707edcefc921890011d35b5a2508aafd71a68d672",
+      "nonce": 895,
+      "status": "confirmed",
+      "blockNumber": "129863457",
+      "contractAddress": "0x175990989d6cD150FcaDf2c46115e8CEDF6B328a"
+    },
+    "deploy:seeder": {
+      "hash": "0x9ac12786a84a820709c1d930947d49ab90d43dcdeb9a7e134b475d8b581de499",
+      "nonce": 896,
+      "status": "confirmed",
+      "blockNumber": "129863496",
+      "contractAddress": "0x8ab372BD7f49533e35e67eEE6FFD2b4049BF196D"
+    },
+    "deploy:testFeed": {
+      "hash": "0x7e6fe3b503d218283cf1176bbd9789d4c0f72d486c95c85b3d03e06c1829496d",
+      "nonce": 897,
+      "status": "confirmed",
+      "blockNumber": "129863538",
+      "contractAddress": "0x93e32F5e2b31A7Fc93cB67e20Cc5B70504073388"
+    },
+    "deploy:oracle": {
+      "hash": "0x2af47b7b39ff9db8de667025d6069ff614e02a61213ee659df9e8ba61b9ce20a",
+      "nonce": 898,
+      "status": "confirmed",
+      "blockNumber": "129863576",
+      "contractAddress": "0x98dB2c74E8219F5346AC29BFC15eb05A7aa7eE1a"
+    },
+    "deploy:adapter": {
+      "hash": "0x98de4a602c57ed82de9a1117744059965761908de8c8c718b8c71a3c1b8cc965",
+      "nonce": 899,
+      "status": "confirmed",
+      "blockNumber": "129863615",
+      "contractAddress": "0xe116c1f535A4D848fff7c1f02E0CE7561AF8F074"
+    },
+    "deploy:treasury": {
+      "hash": "0xfdcfbd2f4d821930647c1215d50040236837d9b9884e4e8e8f4c63d22e464af6",
+      "nonce": 900,
+      "status": "confirmed",
+      "blockNumber": "129863656",
+      "contractAddress": "0xa4Fb3601140Ac93CD1bcc37302ceB9715824f160"
+    },
+    "deploy:rewards": {
+      "hash": "0x1bde8c4e933de6183d8aaa276eebb3f5beae3f718670025a4211c565e40d8739",
+      "nonce": 901,
+      "status": "confirmed",
+      "blockNumber": "129863693",
+      "contractAddress": "0x6c6aF3864e9C54573A91cB5eccb5d9bf976f1d59"
+    },
+    "deploy:liquidity": {
+      "hash": "0xee12cb5beb17c729dcc7a580a210893bf0a84d965c09ab9edb80b17d0a0ed9ba",
+      "nonce": 902,
+      "status": "confirmed",
+      "blockNumber": "129863727",
+      "contractAddress": "0xF65E23a9c4506d43dEFDB979E3d97D0BBF97D188"
+    },
+    "deploy:processor": {
+      "hash": "0x06f8303e5d419a85ca0977e641a00d615297bb0a4cacea3ebb2369277dcfe4c0",
+      "nonce": 903,
+      "status": "confirmed",
+      "blockNumber": "129863759",
+      "contractAddress": "0x776E41A6058e7D6C7Cc5ddCC8aAB6634E432150e"
+    },
+    "deploy:settlement": {
+      "hash": "0x31f963fbd1b3a75971c178760133e36ce12c4dcffd3e0b7dee82645af4c045d2",
+      "nonce": 904,
+      "status": "confirmed",
+      "blockNumber": "129863799",
+      "contractAddress": "0xF9d9D144BB53F847Bd79cAABF09De7dc32Cd0ebf"
+    },
+    "deploy:deed": {
+      "hash": "0x43f5035f3c37be7e0e528e890a57a343f4048defba7cc27b46659066a89c23bf",
+      "nonce": 905,
+      "status": "confirmed",
+      "blockNumber": "129863838",
+      "contractAddress": "0x475525168611930Ade5F291BFF03C037f602A1d1"
+    },
+    "deploy:faucet": {
+      "hash": "0x3bcd9863681646cf7a70b17bf7dba3170bda4a4d79199cfc3c1e7af96939f430",
+      "nonce": 906,
+      "status": "confirmed",
+      "blockNumber": "129863876",
+      "contractAddress": "0xfb224b665Ea88C6F0d664fE7207B8cC1D966e3a9"
+    },
+    "configure:deed": {
+      "hash": "0x0f82d3670c81ab540ee8fd1a674d6206c4b133a616127a27435d35c07e346e98",
+      "nonce": 907,
+      "status": "confirmed",
+      "blockNumber": "129863919"
+    },
+    "configure:settlement": {
+      "hash": "0xfe3b12d133a99cdfff9d829a36ab6052733506251f529957a35df0e53be83248",
+      "nonce": 908,
+      "status": "confirmed",
+      "blockNumber": "129863958"
+    },
+    "authorize:processor": {
+      "hash": "0x7a2828a376f66df12812a57e40318049869e8f7bb38b819f49946925cfe1ab9c",
+      "nonce": 909,
+      "status": "confirmed",
+      "blockNumber": "129863991"
+    },
+    "authorize:settlement": {
+      "hash": "0x66519aceec455a64a0f10d0249ab0fb9f8e4eb9fbc5784f67e6bc117e311d445",
+      "nonce": 910,
+      "status": "confirmed",
+      "blockNumber": "129864029"
+    },
+    "authorize:adapter-processor": {
+      "hash": "0xe9ffd109ba374cfdbc7a942a228293c837679130f31bda5195ad37e006ab785b",
+      "nonce": 911,
+      "status": "confirmed",
+      "blockNumber": "129864066"
+    },
+    "authorize:adapter-settlement": {
+      "hash": "0x694ae427ff6c0eed95b0331da1e0c28dcbd314365e4b4102aeb2f692b82e6ab7",
+      "nonce": 912,
+      "status": "confirmed",
+      "blockNumber": "129864103"
+    },
+    "authorize:deed-fees": {
+      "hash": "0xf2772257a38b67679c9df12f0e16c917745f1d1cabca09442e367894365cc547",
+      "nonce": 913,
+      "status": "confirmed",
+      "blockNumber": "129864134"
+    },
+    "test:weth-funding": {
+      "hash": "0x53d2bd3e7431c9cc06e8b04cb0e7a10649a92a681a661ee5298cb0d76b401640",
+      "nonce": 914,
+      "status": "confirmed",
+      "blockNumber": "129864171"
+    },
+    "test:usdg-funding": {
+      "hash": "0x35aa7a83a7dc1849c27172b432c1b6983f79c0727cc066a4d1f5fa4315401edf",
+      "nonce": 915,
+      "status": "confirmed",
+      "blockNumber": "129864211"
+    },
+    "approve:weth-seeder": {
+      "hash": "0x67900fc63795af39228bc4694e2fbc844912e7612afd3cb0dba716cb6876751a",
+      "nonce": 916,
+      "status": "confirmed",
+      "blockNumber": "129864248"
+    },
+    "approve:usdg-seeder": {
+      "hash": "0x057c62976a97e1cfd975a06a9ee6407053b8a2aeec97dc6711951cf99365d4e0",
+      "nonce": 917,
+      "status": "confirmed",
+      "blockNumber": "129864280"
+    },
+    "pool:funding": {
+      "hash": "0xd4aa8588e4b4c9c0eda679943a482f46814d4da937758ed4f9ffbd2ba81c941f",
+      "nonce": 918,
+      "status": "confirmed",
+      "blockNumber": "129864321"
+    },
+    "initialize:funding": {
+      "hash": "0xd525c21e4efe5f1ea5874bfbab9c002b5d13fe37083633abe3ede5a1808c9230",
+      "nonce": 919,
+      "status": "confirmed",
+      "blockNumber": "129864342",
+      "note": "Initial no-op at the zero address; the actual pool was initialized by the later address-qualified initialize operation."
+    },
+    "initialize:funding:0x998e42B1D3C298015C07d6A9dA74A7634C5B2D54": {
+      "hash": "0xa17d2332e7d1b965a0b0a3ce520d3cc84a0cdd6e2f9cc4883629fe95a756c9a3",
+      "nonce": 920,
+      "status": "confirmed",
+      "blockNumber": "129866107"
+    },
+    "seed:funding": {
+      "hash": "0x245f70e233ba220eef15bb0b34ffe40fcd82361ebcf8b8062c54257cb9a908bf",
+      "nonce": 921,
+      "status": "confirmed",
+      "blockNumber": "129866146"
+    },
+    "configure:funding-pool": {
+      "hash": "0xd40f410da680c264f99dfce353f7e4a22296ad3af1ebb105666566793333af02",
+      "nonce": 922,
+      "status": "confirmed",
+      "blockNumber": "129866182"
+    },
+    "deploy:stockNVDA": {
+      "hash": "0xc23e4a069507043e7585830bb4c3a7a5cbc0d2e5b78d52883d50d18e73ced6fa",
+      "nonce": 923,
+      "status": "confirmed",
+      "blockNumber": "129866221",
+      "contractAddress": "0x82219e4636D0cFf723eA6C474B940F928bBdA8e7"
+    },
+    "mint:NVDA": {
+      "hash": "0x8981be7e0d11305b55f09934e9b9ad8cc710609dd37a73881df091e4ae8f11ed",
+      "nonce": 924,
+      "status": "confirmed",
+      "blockNumber": "129866254"
+    },
+    "approve:NVDA": {
+      "hash": "0x6561bc114c99b24af7f10a14e59a3ad8720aa539804fa76e36f1bbd0a2cc73a1",
+      "nonce": 925,
+      "status": "confirmed",
+      "blockNumber": "129866293"
+    },
+    "pool:NVDA": {
+      "hash": "0x470b3a10012905f6bc4ad549df4f723a3d190d043887d27a2665f01d6cec0623",
+      "nonce": 926,
+      "status": "confirmed",
+      "blockNumber": "129866332"
+    },
+    "initialize:NVDA:0x79A1477EfBDd02C0a33A43C2dA16175FFA6B842B": {
+      "hash": "0x5206164e437df99395e81a6cc0cddc479d037bb2631c470396778320000c8651",
+      "nonce": 927,
+      "status": "confirmed",
+      "blockNumber": "129866362"
+    },
+    "seed:NVDA": {
+      "hash": "0x690149d5fc5c624d6eb16f334205b30dd11864ea046b359d509cce90ffb5e893",
+      "nonce": 928,
+      "status": "confirmed",
+      "blockNumber": "129866397"
+    },
+    "route:NVDA": {
+      "hash": "0x6e22506a302915b2e72f6d15251b9c9778a0956229ea1a524291d97453dc89de",
+      "nonce": 929,
+      "status": "confirmed",
+      "blockNumber": "129866434"
+    },
+    "reward-stock:NVDA": {
+      "hash": "0xc33c481871ace191d3ea7ff10da609d600a23d4d0ffff58892994c7203b6ba32",
+      "nonce": 930,
+      "status": "confirmed",
+      "blockNumber": "129866467"
+    },
+    "deploy:stockTSLA": {
+      "hash": "0x48c77e46c635c47a72df022bd91e51c938300fbca175370160e8a9db00a1d6c0",
+      "nonce": 931,
+      "status": "confirmed",
+      "blockNumber": "129866506",
+      "contractAddress": "0x9DF1c8CDa0d7fE3fC170EB145BC7cD503229813D"
+    },
+    "mint:TSLA": {
+      "hash": "0x850aa70b34697d1086b0315811d758961dee9e54995c13500a2f427ca43584b4",
+      "nonce": 932,
+      "status": "confirmed",
+      "blockNumber": "129866547"
+    },
+    "approve:TSLA": {
+      "hash": "0x2d023c66ff6b58304baec9423494261094e9bdf9613437a713169d0c7d6a3fe9",
+      "nonce": 933,
+      "status": "confirmed",
+      "blockNumber": "129866586"
+    },
+    "pool:TSLA": {
+      "hash": "0x0c6d7416013decb0209b37274dd6533d4853b00776fd63958c6d4e8698bb7845",
+      "nonce": 934,
+      "status": "confirmed",
+      "blockNumber": "129866629"
+    },
+    "initialize:TSLA:0x0669D1B417964885FD068364578309cb93abE6b0": {
+      "hash": "0x6fb63542666804078b2a20cd6928429b777a1c402b2957aed68144a4bf4938d7",
+      "nonce": 935,
+      "status": "confirmed",
+      "blockNumber": "129866667"
+    },
+    "seed:TSLA": {
+      "hash": "0x36e3b4eff733afe2b1763c0002f7c3bf6e651289e59f7a92b0811cbb5ea0d3ec",
+      "nonce": 936,
+      "status": "confirmed",
+      "blockNumber": "129866699"
+    },
+    "route:TSLA": {
+      "hash": "0x77956f0c75db5f285df23cdc6bec2aff1d3365241966a05e35af53ca277ee285",
+      "nonce": 937,
+      "status": "confirmed",
+      "blockNumber": "129866735"
+    },
+    "reward-stock:TSLA": {
+      "hash": "0xb2cf63a6458caebf2d870431a68461d1dd70f9bb9fba87c90136e61980ee39e0",
+      "nonce": 938,
+      "status": "confirmed",
+      "blockNumber": "129866769"
+    },
+    "deploy:stockAAPL": {
+      "hash": "0x8ba5fb831d18bab8bf8f71b9d5c61de35920a967d8692823b0977b96515b5fd7",
+      "nonce": 939,
+      "status": "confirmed",
+      "blockNumber": "129866803",
+      "contractAddress": "0x82280d5eC0A68E0641AE4130EE6c38F7f1B20450"
+    },
+    "mint:AAPL": {
+      "hash": "0xa061d32cfc37130aca5072921bb8240611b2e68e383b577ad999fc55d3c8aed7",
+      "nonce": 940,
+      "status": "confirmed",
+      "blockNumber": "129866833"
+    },
+    "approve:AAPL": {
+      "hash": "0xd9f5c03fb4700bd45a6cb4dd3d455f992381fed57e82dfb1b308cc08c011ed81",
+      "nonce": 941,
+      "status": "confirmed",
+      "blockNumber": "129866869"
+    },
+    "pool:AAPL": {
+      "hash": "0x61b3b5ba62177b473ead4444557a56a7d702a44a69568e8283ef32a8e073e176",
+      "nonce": 942,
+      "status": "confirmed",
+      "blockNumber": "129866906"
+    },
+    "initialize:AAPL:0x953c3B68f961D88B077BbD48A63D955aBb2a367c": {
+      "hash": "0x381f91870b937884772244a6e71841872b2c5345a044c1b50c12c190f4c15d9e",
+      "nonce": 943,
+      "status": "confirmed",
+      "blockNumber": "129866939"
+    },
+    "seed:AAPL": {
+      "hash": "0xe5a1468081f6b74df6dd91b28ada0cc16b73c4d911a65a9d2db2940d0460297e",
+      "nonce": 944,
+      "status": "confirmed",
+      "blockNumber": "129866978"
+    },
+    "route:AAPL": {
+      "hash": "0xef3c501cec748195b3c6ebd228befb3d0970a2826b495e43a70b40ab5c72b7ba",
+      "nonce": 945,
+      "status": "confirmed",
+      "blockNumber": "129867013"
+    },
+    "reward-stock:AAPL": {
+      "hash": "0xf627fe792cb940e2da319550ac33afd9d958265fa5e4834de72bb3ebcd005c36",
+      "nonce": 946,
+      "status": "confirmed",
+      "blockNumber": "129867046"
+    },
+    "deploy:stockMSFT": {
+      "hash": "0xd9151dd4e3874026bed2597e09581dceb6d3623b53a3126404b3dae888293380",
+      "nonce": 947,
+      "status": "confirmed",
+      "blockNumber": "129867076",
+      "contractAddress": "0xD4a32F59982348B59DF1f0F8A2E82601139d0C88"
+    },
+    "mint:MSFT": {
+      "hash": "0x182f153351fc395f674f2c85ce8f25276619105e9bdd5bc2dbd49ac13cce11db",
+      "nonce": 948,
+      "status": "confirmed",
+      "blockNumber": "129867111"
+    },
+    "approve:MSFT": {
+      "hash": "0x494a02e00f0b26bfcc2939f782ee8aa452c5357c818ad930621c3f894b7ff67f",
+      "nonce": 949,
+      "status": "confirmed",
+      "blockNumber": "129867144"
+    },
+    "pool:MSFT": {
+      "hash": "0xf6a2f3c3316bb2ac5df9617f12bd1bae66050713c63193695e5b80380ca8f560",
+      "nonce": 950,
+      "status": "confirmed",
+      "blockNumber": "129867177"
+    },
+    "initialize:MSFT:0xB4A2D02BdBcD2Ac437bcc4D358B6a4Eb7aDD4A7f": {
+      "hash": "0x952091e16a621c84e4aa94be4c5db14dc1ae9574f9af7078ac0c184cfec5b7dd",
+      "nonce": 951,
+      "status": "confirmed",
+      "blockNumber": "129867212"
+    },
+    "seed:MSFT": {
+      "hash": "0x44847780b545ca3ecc35d5d84c4bed302dde7d1640ea460239bbb98f760dc2ae",
+      "nonce": 952,
+      "status": "confirmed",
+      "blockNumber": "129867246"
+    },
+    "route:MSFT": {
+      "hash": "0x5eb068d8e98a72a686778273441002308788299e1abc9eb69d6a9782a81a3f6c",
+      "nonce": 953,
+      "status": "confirmed",
+      "blockNumber": "129867284"
+    },
+    "reward-stock:MSFT": {
+      "hash": "0x9ee7cf6133f4a9410509f7d5c68b7c5dc716d92064056d4b4fa2fed94969be8c",
+      "nonce": 954,
+      "status": "confirmed",
+      "blockNumber": "129867319"
+    },
+    "deploy:stockAMZN": {
+      "hash": "0x2341a53c3051b5afbe3150c9016f5fb48243ae6154a8a0c2f648c6b581e93278",
+      "nonce": 955,
+      "status": "confirmed",
+      "blockNumber": "129867351",
+      "contractAddress": "0x64d4B37f4A5216291B7b5b7F3dCeF1Dbeb417E76"
+    },
+    "mint:AMZN": {
+      "hash": "0x1fadbb23cfd3c26afe1e24102d8d44ca1a84651c2ee37ce7c1b81e771241c999",
+      "nonce": 956,
+      "status": "confirmed",
+      "blockNumber": "129867390"
+    },
+    "approve:AMZN": {
+      "hash": "0x755adb1308132ed8820541adf4f1cb39a98c20e4dbed37cd96c83c224cf7ae6a",
+      "nonce": 957,
+      "status": "confirmed",
+      "blockNumber": "129867429"
+    },
+    "pool:AMZN": {
+      "hash": "0x36e4f69bf3dba060b7b7f83b2724615729fc9550f597b9fff9d4c36c96103c26",
+      "nonce": 958,
+      "status": "confirmed",
+      "blockNumber": "129867468"
+    },
+    "initialize:AMZN:0xaae67872B65a53F9c10F6193a5e0e95a36D62f4e": {
+      "hash": "0xd8df680c92399a37c2fce0528c3c92ef0c823d5aa4b2e2d4a9e64012b6b2ac6c",
+      "nonce": 959,
+      "status": "confirmed",
+      "blockNumber": "129867510"
+    },
+    "seed:AMZN": {
+      "hash": "0xe6c3f4694ca84820e07facea5e44c9fad4c43144cba83bcd00ebd4f95bab1479",
+      "nonce": 960,
+      "status": "confirmed",
+      "blockNumber": "129867552"
+    },
+    "route:AMZN": {
+      "hash": "0x598d5885e4d8955a431c13e9a541dac78045a9a33d3220acae6f8ce63f0754cd",
+      "nonce": 961,
+      "status": "confirmed",
+      "blockNumber": "129867590"
+    },
+    "reward-stock:AMZN": {
+      "hash": "0xb7201c8d5eac99e45cffbcb44ce4f04fcc112f7f6d3e7bfe54ce6e36ae900b38",
+      "nonce": 962,
+      "status": "confirmed",
+      "blockNumber": "129867629"
+    },
+    "deploy:stockMETA": {
+      "hash": "0xb18b9cd78d26154ff312bdbf477739c0e7859e6241f3fd26f8691d6b5d73c995",
+      "nonce": 963,
+      "status": "confirmed",
+      "blockNumber": "129867668",
+      "contractAddress": "0x61B1ddAd0e69865c1BDCE07596aaE3aac9991B30"
+    },
+    "mint:META": {
+      "hash": "0xa3c5f9f5f56bc092f3b99ff63d3a8184105fefa1084d0d80921a247c35a35084",
+      "nonce": 964,
+      "status": "confirmed",
+      "blockNumber": "129867710"
+    },
+    "approve:META": {
+      "hash": "0x2a59424377a3328caf8b642e4bd0cf7f33111e1ecb7e91714a7adf649ac973ea",
+      "nonce": 965,
+      "status": "confirmed",
+      "blockNumber": "129867750"
+    },
+    "pool:META": {
+      "hash": "0x3c2fc7beace12e9a3ec8a54c660f06d9d080bea0202419a4de33bcce501e45f4",
+      "nonce": 966,
+      "status": "confirmed",
+      "blockNumber": "129867792"
+    },
+    "initialize:META:0x1737a50735987Ff5f479cD1C204490F7B24ef95a": {
+      "hash": "0xe2da6065083629a68b70f90483e7a59710ea2cbc643381f392cc039e38759299",
+      "nonce": 967,
+      "status": "confirmed",
+      "blockNumber": "129867838"
+    },
+    "seed:META": {
+      "hash": "0xa493cdb34a63815e7940236d414d13153563e0099c2f4ca38ebcc534e2de3dbb",
+      "nonce": 968,
+      "status": "confirmed",
+      "blockNumber": "129867879"
+    },
+    "route:META": {
+      "hash": "0xfd27661a95091213f87b231e16eee3816e688f58f2428ab91585d6a67b749f0e",
+      "nonce": 969,
+      "status": "confirmed",
+      "blockNumber": "129867921"
+    },
+    "reward-stock:META": {
+      "hash": "0x104def378ff0d691137ff5a6cb9e733be87b9a3ac28f0c739e2b1aa654dc0e8b",
+      "nonce": 970,
+      "status": "confirmed",
+      "blockNumber": "129867966"
+    },
+    "deploy:stockGOOGL": {
+      "hash": "0x84a9683badf88466961ad3c208bee6afa568e0269f006c07ffcbc11d1701ff45",
+      "nonce": 971,
+      "status": "confirmed",
+      "blockNumber": "129868004",
+      "contractAddress": "0xf06D001A4c68cc81F26Ed6D764f6698d62585068"
+    },
+    "mint:GOOGL": {
+      "hash": "0x39b004cbf4dc6e9b6ac5dc66aa7f81762537d4d6cd442724fd9b8c3c4917cb0b",
+      "nonce": 972,
+      "status": "confirmed",
+      "blockNumber": "129868044"
+    },
+    "approve:GOOGL": {
+      "hash": "0x736e69f8beba872da8083b2983ff91fe7a164706db64dbfac09e44fb6f39b80a",
+      "nonce": 973,
+      "status": "confirmed",
+      "blockNumber": "129868082"
+    },
+    "pool:GOOGL": {
+      "hash": "0x0e7d193ef492ed128dbd9d8640afb9e808ce3b63f3a41e315d51435a79aa71c0",
+      "nonce": 974,
+      "status": "confirmed",
+      "blockNumber": "129868124"
+    },
+    "initialize:GOOGL:0xF0AA591B2f3c77912F4858B085D3f61E31e1b5A3": {
+      "hash": "0x939ca0e358b999cc2522371eea44c1e8589e3dd949d757d8c272618993d5fe32",
+      "nonce": 975,
+      "status": "confirmed",
+      "blockNumber": "129868169"
+    },
+    "seed:GOOGL": {
+      "hash": "0x338e3dc2574feb85ed6317dcda357e12b24bae8f2b4c9ab5eb5a6c0361689844",
+      "nonce": 976,
+      "status": "confirmed",
+      "blockNumber": "129868187"
+    },
+    "route:GOOGL": {
+      "hash": "0x198ae266b500c791880c9c8d78295c26d6b8547b49a17bd45ca742ef76124d00",
+      "nonce": 977,
+      "status": "confirmed",
+      "blockNumber": "129868226"
+    },
+    "reward-stock:GOOGL": {
+      "hash": "0x45c3efabc928b55cf7a2dc426973ed310b88e5889f0649868ffc46e5db073f2a",
+      "nonce": 978,
+      "status": "confirmed",
+      "blockNumber": "129868246"
+    },
+    "deploy:stockNFLX": {
+      "hash": "0x55645d3540a708a7baac8643de224d349c001a3554295680c853224c5a5d8d75",
+      "nonce": 979,
+      "status": "confirmed",
+      "blockNumber": "129868288",
+      "contractAddress": "0x53e32bcf6e0f126774089043c18d673F76453Db4"
+    },
+    "mint:NFLX": {
+      "hash": "0x8f943f37b7d6907e7a2e05da97e61bc487ca40ed2ec9e1086ce568818529051a",
+      "nonce": 980,
+      "status": "confirmed",
+      "blockNumber": "129868332"
+    },
+    "approve:NFLX": {
+      "hash": "0x8859fcf905fe76940d1c973f77dc37dd35d0a7f959b92be3dc15d51369aa3e45",
+      "nonce": 981,
+      "status": "confirmed",
+      "blockNumber": "129868352"
+    },
+    "pool:NFLX": {
+      "hash": "0x849057698f3e9dc97a91a9bb2785b77abf05cb86c1bafd0d0af03802b96b2819",
+      "nonce": 982,
+      "status": "confirmed",
+      "blockNumber": "129868394"
+    },
+    "initialize:NFLX:0xB560ADcb647690f3012fE2e03326223A1F192628": {
+      "hash": "0x09d9a98fcfd1351070da1059dc4c97ccd2826af0c25708901954eddff5d3d76a",
+      "nonce": 983,
+      "status": "confirmed",
+      "blockNumber": "129868439"
+    },
+    "seed:NFLX": {
+      "hash": "0x531523e2d912ae72bda80ac5432c7a777eab3b6880e8de3a30b8f14f8a0e2eae",
+      "nonce": 984,
+      "status": "confirmed",
+      "blockNumber": "129868476"
+    },
+    "route:NFLX": {
+      "hash": "0xfd449e12f7530344157d0ff49184f5d2f9ee90a9e283c8e806e615055d6e350f",
+      "nonce": 985,
+      "status": "confirmed",
+      "blockNumber": "129868509"
+    },
+    "reward-stock:NFLX": {
+      "hash": "0x8c084db48b7e9aefc94a1bad407c49389e522209bd4b7fdd9da922da0818bcb5",
+      "nonce": 986,
+      "status": "confirmed",
+      "blockNumber": "129868544"
+    },
+    "deploy:stockAMD": {
+      "hash": "0x930c03f0be263a725fca6939525aa23672e95e16e8804b1b5c79a866b68b7820",
+      "nonce": 987,
+      "status": "confirmed",
+      "blockNumber": "129868579",
+      "contractAddress": "0x6eE7890dEDcd2b855e23c2729c9476090008a769"
+    },
+    "mint:AMD": {
+      "hash": "0x21cdc8477c9879a21530663f7a4a81654f0ea06f9e855dfe08a0fda835dce4f0",
+      "nonce": 988,
+      "status": "confirmed",
+      "blockNumber": "129868614"
+    },
+    "approve:AMD": {
+      "hash": "0x276960c1ad939c7eb1b78e7c8da1fe553adc4adca724866290aace1d74fcb2bd",
+      "nonce": 989,
+      "status": "confirmed",
+      "blockNumber": "129868655"
+    },
+    "pool:AMD": {
+      "hash": "0x0bd93ad317df183562e4ceb07cd159912c215f71fd8512a8a0799652043d5889",
+      "nonce": 990,
+      "status": "confirmed",
+      "blockNumber": "129868699"
+    },
+    "initialize:AMD:0x9C5520d61E8Cf9cBf4b8A0b3Ca3ef293eAD50Bc6": {
+      "hash": "0x6b7aae4ca4c968ba9f52861d541294a619803625b36209ca76295875c1de4ce8",
+      "nonce": 991,
+      "status": "confirmed",
+      "blockNumber": "129868734"
+    },
+    "seed:AMD": {
+      "hash": "0x7acb10a537d4b2f0879376521f5c880dc1cc527d512675480ed2c5e61cf50147",
+      "nonce": 992,
+      "status": "confirmed",
+      "blockNumber": "129868774"
+    },
+    "route:AMD": {
+      "hash": "0x1bfcf4b090f0660fc6a5e991a6c4488b7b6b24d01c68ff88f3291f046ec0a330",
+      "nonce": 993,
+      "status": "confirmed",
+      "blockNumber": "129868809"
+    },
+    "reward-stock:AMD": {
+      "hash": "0xabe90c7520e703a6ddef23eb2310357e535ef38e8a99e9ae5b5a118bb5097b56",
+      "nonce": 994,
+      "status": "confirmed",
+      "blockNumber": "129868846"
+    },
+    "deploy:stockCOIN": {
+      "hash": "0xce6f5d274f61243257bb110d384fa0af788940d227fdf91d236ac281f03ba6db",
+      "nonce": 995,
+      "status": "confirmed",
+      "blockNumber": "129868885",
+      "contractAddress": "0x0216452Ab659aa1840530dE940aE0D4726844965"
+    },
+    "mint:COIN": {
+      "hash": "0x5adcddc355441478fe6702b076e07b6304c2322ad7dd25e11291a9e67e474254",
+      "nonce": 996,
+      "status": "confirmed",
+      "blockNumber": "129868925"
+    },
+    "approve:COIN": {
+      "hash": "0x986007760c80157e3baceef51809ea3ee14aa9c73f128856b0584d910332ef65",
+      "nonce": 997,
+      "status": "confirmed",
+      "blockNumber": "129868963"
+    },
+    "pool:COIN": {
+      "hash": "0xf64461965a46272356fb9d5746e8f5d760fcc6f9a027da73e11b469bbf5cf79d",
+      "nonce": 998,
+      "status": "confirmed",
+      "blockNumber": "129869005"
+    },
+    "initialize:COIN:0xC83128edAD4d4Ea9eED5E078bD01eF7C791aC459": {
+      "hash": "0xf8c06886d714aa02445f03938cfbdf2724e3bf595de82ae1b65478e5fc9a039e",
+      "nonce": 999,
+      "status": "confirmed",
+      "blockNumber": "129869039"
+    },
+    "seed:COIN": {
+      "hash": "0x07c3330b7602f9395311e5c26238e188c05aa3a24aeaf993cdf035644c790295",
+      "nonce": 1000,
+      "status": "confirmed",
+      "blockNumber": "129869067"
+    },
+    "route:COIN": {
+      "hash": "0x478e37a90e0398836968b01a452fd36d49fd664147f13bc8930e3e0c6c53a592",
+      "nonce": 1001,
+      "status": "confirmed",
+      "blockNumber": "129869106"
+    },
+    "reward-stock:COIN": {
+      "hash": "0xb2c81ee1f3c0f0e42062d10828f23927be17a44fe791dd7f2f4d34a23c33c36f",
+      "nonce": 1002,
+      "status": "confirmed",
+      "blockNumber": "129869138"
+    },
+    "deploy:hook": {
+      "hash": "0x330c32ac96b05f7c21b3d1ca75907f7390c1583cc9acae5c084214d9ccf1feaf",
+      "nonce": 1003,
+      "status": "confirmed",
+      "blockNumber": "129869193"
+    },
+    "deploy:router": {
+      "hash": "0xc1c765cabe9a1d87e96bf840d47fdf2ec5500cbc6c0974318c267d1eb4ca3793",
+      "nonce": 1004,
+      "status": "confirmed",
+      "blockNumber": "129869230",
+      "contractAddress": "0x5e89DAdbBdDfc991184b0ce4A3EBb53902E43E82"
+    },
+    "configure:hook": {
+      "hash": "0x8a0e5d995fa16b2172e80ce11839e3348bac42e0e80cb1e2efd6b19e6b64052b",
+      "nonce": 1005,
+      "status": "confirmed",
+      "blockNumber": "129869263"
+    },
+    "initialize:rent-pool": {
+      "hash": "0xbcbd684db0975cb334be6523d2efb49674c7ef2f79ee49dbc2cbdc28fcb1f762",
+      "nonce": 1006,
+      "status": "confirmed",
+      "blockNumber": "129869294"
+    },
+    "approve:rent-liquidity": {
+      "hash": "0x67a72c2771408c956834f397549c8e6198136c26073d6784aa87ba7445e4c2c1",
+      "nonce": 1007,
+      "status": "confirmed",
+      "blockNumber": "129869334"
+    },
+    "seed:rent-pool": {
+      "hash": "0xc4eac53c330a84c2c4c53bb4751aa64154af99c33be44fbc5038bed614594a20",
+      "nonce": 1008,
+      "status": "confirmed",
+      "blockNumber": "129869362"
+    },
+    "authorize:router-fees": {
+      "hash": "0x3227315b4e83f36de7c913bc059cb25a2720d6ffeef6c0d44b05c16f00b129f9",
+      "nonce": 1009,
+      "status": "confirmed",
+      "blockNumber": "129869402"
+    },
+    "configure:liquidity-router": {
+      "hash": "0x5cb8e1501ba3e0b1faf6ba775331e502c16161ad9617f5689c1b4d3a4e692434",
+      "nonce": 1010,
+      "status": "confirmed",
+      "blockNumber": "129869436"
+    },
+    "configure:adapter-rent-router": {
+      "hash": "0xd3ada926f5f2410b620923a3dcadf9e289992c1fd3381e834dfbe0911c399872",
+      "nonce": 1011,
+      "status": "confirmed",
+      "blockNumber": "129869468"
+    },
+    "fund:faucet": {
+      "hash": "0x8649b26eed21ffe35d0dfc586f6ecdff7ba5a12521310458da8daa1ad50d6b5d",
+      "nonce": 1012,
+      "status": "confirmed",
+      "blockNumber": "129869503"
+    },
+    "fund:protocol-liquidity": {
+      "hash": "0x29f6787169c04def2a52239ee65580061fd1df667de4003b2c4a6f84b584dd90",
+      "nonce": 1013,
+      "status": "confirmed",
+      "blockNumber": "129869537"
+    },
+    "revoke:owner-reward-funding": {
+      "hash": "0x26132e60a03760791a1819c0af489edc41075c90e7141d6b3185db2bd7911951",
+      "nonce": 1014,
+      "status": "confirmed",
+      "blockNumber": "129869570"
+    }
+  },
+  "pool": {
+    "id": "0x226f15880532beefbe7b422c99d23d0f813809a4ebb9de385f3c5bfa06189539",
+    "fee": 0,
+    "tickSpacing": 60
+  },
+  "deployedAtBlock": "129863838",
+  "firstCycleReadyAt": "1791299617",
+  "completedAt": "2026-10-06T12:27:02.935Z"
+}

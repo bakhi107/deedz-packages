@@ -13,6 +13,7 @@ contract FeeProcessor is Ownable, ReentrancyGuard {
     uint256 public constant INTERVAL = 3 hours;
     struct Allocation { bytes32 ticker; uint256 ethAmount; uint256 minimumStockOut; bytes32 merkleRoot; }
 
+    struct StockAllocation { bytes32 ticker; uint256 ethAmount; uint256 minimumStockOut; bytes32 merkleRoot; uint256 holderCount; }
     StockRewards public immutable rewards;
     IStockSwap public exchange;
     address public keeper;
@@ -67,6 +68,42 @@ contract FeeProcessor is Ownable, ReentrancyGuard {
         require(allocated == rewardsEth, "Allocation mismatch");
         (bool ok,) = liquidity.call{value: liquidityEth}(""); require(ok, "Liquidity transfer failed");
         emit CycleProcessed(block.timestamp, fees, rewardsEth, liquidityEth, teamEth);
+    }
+
+    /// @notice Snapshot membership before execution; divide the actual swap output on claim.
+    function processStockCycle(StockAllocation[] calldata allocations, uint256 expectedFees, uint256 expectedBatch, uint256 deadline)
+        external onlyKeeper nonReentrant returns (uint256[] memory outputs)
+    {
+        require(block.timestamp <= deadline && deadline <= block.timestamp + 120, "Expired plan");
+        require(block.timestamp >= uint256(lastCycleAt) + INTERVAL, "Cycle not ready");
+        uint256 fees = expectedFees;
+        require(fees != 0 && queuedTradingFees >= fees && rewards.batchCount() == expectedBatch, "Stale plan");
+        require(allocations.length != 0 && allocations.length <= 10, "Invalid clan count");
+        uint256 rewardsEth = fees * 70 / 100; uint256 liquidityEth = fees * 20 / 100;
+        uint256 allocated;
+        for (uint256 i; i < allocations.length; ++i) {
+            StockAllocation calldata a = allocations[i];
+            require(a.ethAmount != 0 && a.minimumStockOut != 0 && a.merkleRoot != bytes32(0) && a.holderCount > 0 && a.holderCount <= 250, "Invalid allocation");
+            for (uint256 j; j < i; ++j) require(allocations[j].ticker != a.ticker, "Duplicate clan");
+            allocated += a.ethAmount;
+        }
+        require(allocated == rewardsEth, "Allocation mismatch");
+        queuedTradingFees -= fees; lastCycleAt = uint64(block.timestamp);
+        teamBalance += fees - rewardsEth - liquidityEth;
+        outputs = new uint256[](allocations.length);
+        for (uint256 i; i < allocations.length; ++i) {
+            StockAllocation calldata a = allocations[i]; IERC20 token = rewards.stockToken(a.ticker);
+            require(address(token) != address(0), "Unknown stock");
+            uint256 beforeBalance = token.balanceOf(address(this));
+            exchange.buyStock{value:a.ethAmount}(a.ticker, address(this), a.minimumStockOut);
+            uint256 amount = token.balanceOf(address(this)) - beforeBalance;
+            require(amount >= a.minimumStockOut, "Stock slippage"); outputs[i] = amount;
+            token.forceApprove(address(rewards), amount);
+            rewards.createShareBatch(a.ticker, a.merkleRoot, amount, a.holderCount);
+            token.forceApprove(address(rewards), 0);
+        }
+        (bool ok,) = liquidity.call{value:liquidityEth}(""); require(ok, "Liquidity transfer failed");
+        emit CycleProcessed(block.timestamp, fees, rewardsEth, liquidityEth, fees - rewardsEth - liquidityEth);
     }
 
     function claimTeam(address payable recipient) external nonReentrant returns (uint256 amount) {

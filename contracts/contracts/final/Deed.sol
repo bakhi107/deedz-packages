@@ -46,7 +46,7 @@ contract Deed is ERC721, Ownable, ReentrancyGuard {
         require(owner_ != address(0) && rent_.code.length != 0 && treasury_.code.length != 0 && feeProcessor_ != address(0), "Invalid configuration");
         rent = IBurnableRent(rent_); treasury = RentTreasury(treasury_); feeProcessor = feeProcessor_;
         art = new DeedArt();
-        bytes32[10] memory names = [bytes32("NVDA"),"TSLA","AAPL","MSFT","AMZN","META","GOOGL","NFLX","AMD","PLTR"];
+        bytes32[10] memory names = [bytes32("NVDA"),"TSLA","AAPL","MSFT","AMZN","META","GOOGL","NFLX","AMD","COIN"];
         for (uint256 i; i < names.length; ++i) supportedTicker[names[i]] = true;
     }
 

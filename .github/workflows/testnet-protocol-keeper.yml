@@ -1,13 +1,11 @@
 name: DEEDZ Testnet Protocol Keeper
 
 on:
-  schedule:
-    # Offset checks from minute 0 and common five-minute boundaries. GitHub cron is best-effort.
-    - cron: "2-59/5 * * * *"
+  # Cloudflare dispatches this workflow every 15 minutes. One scheduler avoids duplicates.
   workflow_dispatch:
     inputs:
       smoke_test:
-        description: "Seed and verify one small testnet trade and stock claim"
+        description: "Verify the new testnet suite and claim any funded sample rewards"
         type: boolean
         default: false
 
@@ -27,65 +25,53 @@ jobs:
         working-directory: contracts
     env:
       DEEDZ_KEEPER_PERSIST_GIT: "1"
+      DEEDZ_KEEPER_EXECUTE: "1"
+      DEEDZ_KEEPER_DATA: keeper-data/stock-testnet
+      DEEDZ_STOCK_MANIFEST: deployments/robinhood-testnet-stock.json
       ROBINHOOD_TESTNET_RPC_URL: https://rpc.testnet.chain.robinhood.com
-      FINAL_DEED: "0xEF1473ADc7e6a82a5F98439eC1D32eCA690b6DF7"
-      FINAL_PROCESSOR: "0x89bdF2a7aD4da2288d36bC54E4F04c216E161A3f"
-      FINAL_REWARDS: "0x7517287AC3Fc221Fa02840Dfb1D1ab8b9bD31904"
-      FINAL_EXCHANGE: "0xD411378275e477DFb7B7F4cbdD535C47AbC1C61C"
-      FINAL_TREASURY: "0x2e0555CD86fF674720Cb1f032d03785071d3B36f"
-      FINAL_SETTLEMENT: "0xC2FbbE8a6A375651671FEF85e95C2e1a880C8c72"
-      FINAL_RENT: "0xa0f9f381aAa14Aae77ffb64B59BfECa2E825fc33"
-      FINAL_LIQUIDITY_MANAGER: "0x9a86273026a911543317f53afd31976f104afa43"
-      FINAL_TRADING_POOL: "0x0C8272dDd362195642ca20F752069b54cd467129"
-      FINAL_FAUCET: "0x5A7efAFA76b11afEdeCe45ED4b5b2CE7714561a9"
-
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.ref_name }}
+          ref: main
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+          cache: npm
+          cache-dependency-path: contracts/package-lock.json
       - name: Validate keeper secret
         shell: bash
         env:
           PRIVATE_KEY: ${{ secrets.KEEPER_PRIVATE_KEY }}
         run: test -n "$PRIVATE_KEY"
-      - run: npm install --no-audit --no-fund
+      - run: npm ci --no-audit --no-fund
       - run: npm run compile
       - run: node --test scripts/testnet-keeper-state.test.mjs
       - name: Configure durable keeper checkpoints
         run: |
           git config user.name "deedz-keeper"
           git config user.email "keeper@deedz.invalid"
-      - name: Seed manual testnet smoke test
-        if: ${{ github.event_name == 'workflow_dispatch' && inputs.smoke_test }}
+      - name: Buy stocks and register wallet credits when the three-hour cycle is due
+        run: npm run operate:stock-keeper
         env:
           PRIVATE_KEY: ${{ secrets.KEEPER_PRIVATE_KEY }}
-          DEEDZ_TESTNET_SMOKE: "1"
-          DEEDZ_SMOKE_PHASE: prepare
-        run: npx hardhat run --no-compile scripts/testnet-keeper-smoke.ts
-      - run: npm run operate:final-keeper
+          DEEDZ_KEEPER_ACTION: cycle
+      - name: Settle completed rent weeks and reinvest liquidity
+        run: npm run operate:stock-keeper
         env:
           PRIVATE_KEY: ${{ secrets.KEEPER_PRIVATE_KEY }}
-      - run: npm run operate:final-sunday
-        env:
-          PRIVATE_KEY: ${{ secrets.KEEPER_PRIVATE_KEY }}
-      - name: Claim and verify manual test rewards
-        if: ${{ github.event_name == 'workflow_dispatch' && inputs.smoke_test }}
+          DEEDZ_KEEPER_ACTION: sunday
+      - name: Verify sample rewards
+        if: ${{ inputs.smoke_test }}
+        run: npx hardhat run --no-compile scripts/stock/testnet-smoke.ts
         env:
           PRIVATE_KEY: ${{ secrets.KEEPER_PRIVATE_KEY }}
           DEEDZ_TESTNET_SMOKE: "1"
           DEEDZ_SMOKE_PHASE: verify
-        run: npx hardhat run --no-compile scripts/testnet-keeper-smoke.ts
-      - name: Publish claim proofs when a cycle ran
+      - name: Publish public recovery data
         if: ${{ always() }}
-        shell: bash
         run: |
-          if git status --short keeper-data | grep -q .; then
-            git config user.name "deedz-keeper"
-            git config user.email "keeper@deedz.invalid"
-            git add keeper-data
-            git commit -m "Publish reward claim proofs"
-            git push
+          git add -A -- keeper-data/stock-testnet
+          if ! git diff --cached --quiet -- keeper-data/stock-testnet; then
+            git commit -m "Checkpoint new testnet stock keeper" -- keeper-data/stock-testnet
+            git push origin HEAD
           fi

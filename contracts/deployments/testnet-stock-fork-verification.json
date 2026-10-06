@@ -1,0 +1,138 @@
+{
+  "status": "passed",
+  "sourceChainId": 46630,
+  "localChainId": 31337,
+  "sourceBlock": 129869709,
+  "contracts": {
+    "rent": "0x6F3539ca09035E172770b1de88b34F6Cf75139BB",
+    "weth": "0xc1F8aA9F8Ec6E03a636B05Ce9e2a7FE22B824BD8",
+    "usdg": "0x20b3f5E4689f503f8d23ee9331B7fF03Dd815B15",
+    "factory": "0x175990989d6cD150FcaDf2c46115e8CEDF6B328a",
+    "seeder": "0x8ab372BD7f49533e35e67eEE6FFD2b4049BF196D",
+    "testFeed": "0x93e32F5e2b31A7Fc93cB67e20Cc5B70504073388",
+    "oracle": "0x98dB2c74E8219F5346AC29BFC15eb05A7aa7eE1a",
+    "adapter": "0xe116c1f535A4D848fff7c1f02E0CE7561AF8F074",
+    "treasury": "0xa4Fb3601140Ac93CD1bcc37302ceB9715824f160",
+    "rewards": "0x6c6aF3864e9C54573A91cB5eccb5d9bf976f1d59",
+    "liquidity": "0xF65E23a9c4506d43dEFDB979E3d97D0BBF97D188",
+    "processor": "0x776E41A6058e7D6C7Cc5ddCC8aAB6634E432150e",
+    "settlement": "0xF9d9D144BB53F847Bd79cAABF09De7dc32Cd0ebf",
+    "deed": "0x475525168611930Ade5F291BFF03C037f602A1d1",
+    "faucet": "0xfb224b665Ea88C6F0d664fE7207B8cC1D966e3a9",
+    "art": "0xF15781443c09a100d99042D4efe880f7795D5aC1",
+    "stockNVDA": "0x82219e4636D0cFf723eA6C474B940F928bBdA8e7",
+    "stockTSLA": "0x9DF1c8CDa0d7fE3fC170EB145BC7cD503229813D",
+    "stockAAPL": "0x82280d5eC0A68E0641AE4130EE6c38F7f1B20450",
+    "stockMSFT": "0xD4a32F59982348B59DF1f0F8A2E82601139d0C88",
+    "stockAMZN": "0x64d4B37f4A5216291B7b5b7F3dCeF1Dbeb417E76",
+    "stockMETA": "0x61B1ddAd0e69865c1BDCE07596aaE3aac9991B30",
+    "stockGOOGL": "0xf06D001A4c68cc81F26Ed6D764f6698d62585068",
+    "stockNFLX": "0x53e32bcf6e0f126774089043c18d673F76453Db4",
+    "stockAMD": "0x6eE7890dEDcd2b855e23c2729c9476090008a769",
+    "stockCOIN": "0x0216452Ab659aa1840530dE940aE0D4726844965",
+    "hook": "0xE3684fBaFaBC1c037bd446Cd4c36b67247f20080",
+    "router": "0x5e89DAdbBdDfc991184b0ce4A3EBb53902E43E82"
+  },
+  "checks": [
+    "All ten deployed clans mint/light; exact RENT burns, oracle conversion, top-up, repricing and NFT metadata",
+    "V4 buys/sells collect 5%; three-hour stock cycle buys all ten tokens through V3 with exact 70/20/10 and idempotent credit registration",
+    "Buyout transfers NFT and pays seller; previous holder retains earned stock; all ten single-argument claims and replay protection work",
+    "All ten stock tokens sell back to test ETH; keeper reinvests protocol liquidity",
+    "Sunday checkpoint, buyback/burn, jackpot credits, liquidity and duplicate-settlement rejection",
+    "Grace eligibility, Dark exclusion and paid relighting after local time advancement"
+  ],
+  "purchases": [
+    {
+      "ticker": "0x4141504c00000000000000000000000000000000000000000000000000000000",
+      "funded": "73434485138"
+    },
+    {
+      "ticker": "0x414d440000000000000000000000000000000000000000000000000000000000",
+      "funded": "73434485138"
+    },
+    {
+      "ticker": "0x414d5a4e00000000000000000000000000000000000000000000000000000000",
+      "funded": "73434485138"
+    },
+    {
+      "ticker": "0x434f494e00000000000000000000000000000000000000000000000000000000",
+      "funded": "73211525815"
+    },
+    {
+      "ticker": "0x474f4f474c000000000000000000000000000000000000000000000000000000",
+      "funded": "73434485138"
+    },
+    {
+      "ticker": "0x4d45544100000000000000000000000000000000000000000000000000000000",
+      "funded": "73206149955"
+    },
+    {
+      "ticker": "0x4d53465400000000000000000000000000000000000000000000000000000000",
+      "funded": "73200774689"
+    },
+    {
+      "ticker": "0x4e464c5800000000000000000000000000000000000000000000000000000000",
+      "funded": "73195400016"
+    },
+    {
+      "ticker": "0x4e56444100000000000000000000000000000000000000000000000000000000",
+      "funded": "73434485138"
+    },
+    {
+      "ticker": "0x54534c4100000000000000000000000000000000000000000000000000000000",
+      "funded": "73190025940"
+    }
+  ],
+  "sales": [
+    {
+      "ticker": "NVDA",
+      "stockIn": "73434485138",
+      "ethOut": "73224968416"
+    },
+    {
+      "ticker": "TSLA",
+      "stockIn": "73190025940",
+      "ethOut": "72786301508"
+    },
+    {
+      "ticker": "AAPL",
+      "stockIn": "73434485138",
+      "ethOut": "73224968416"
+    },
+    {
+      "ticker": "MSFT",
+      "stockIn": "73200774689",
+      "ethOut": "72791694687"
+    },
+    {
+      "ticker": "AMZN",
+      "stockIn": "73434485138",
+      "ethOut": "73224968416"
+    },
+    {
+      "ticker": "META",
+      "stockIn": "73206149955",
+      "ethOut": "72791742458"
+    },
+    {
+      "ticker": "GOOGL",
+      "stockIn": "73434485138",
+      "ethOut": "73224968416"
+    },
+    {
+      "ticker": "NFLX",
+      "stockIn": "73195400016",
+      "ethOut": "72775755111"
+    },
+    {
+      "ticker": "AMD",
+      "stockIn": "73434485138",
+      "ethOut": "73224968416"
+    },
+    {
+      "ticker": "COIN",
+      "stockIn": "73211525815",
+      "ethOut": "72786493339"
+    }
+  ]
+}

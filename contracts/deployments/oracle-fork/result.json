@@ -1,0 +1,54 @@
+{
+  "status": "passed",
+  "sourceChainId": 4663,
+  "localChainId": 31337,
+  "checks": [
+    "Real Robinhood ETH/USD proxy is readable by the production adapter; exact decimals and original timestamp verified",
+    "Final treasury converts valuations and 0.3% daily rent using the actual Chainlink answer, with upward ETH rounding",
+    "NFT lighting, exact seven-day funding, RENT burn, valuation changes and top-ups succeed with the production oracle",
+    "NFT purchase uses the live-feed valuation and buyer runway; seller proceeds and existing team fee are correctly accounted",
+    "Frozen real-feed timestamp becomes stale after 24 hours; price-dependent actions revert atomically without burning RENT or changing ownership",
+    "Already-earned seller proceeds remain withdrawable while the price feed is stale"
+  ],
+  "limitations": [
+    "Only local fork contracts are deployed; the real feed proxy and aggregator are copied unchanged.",
+    "No live deployment or signed mainnet transaction is performed.",
+    "Robinhood is not in Chainlink's published sequencer uptime-feed list. Dedicated sequencer outage protection is not configured or verified.",
+    "The existing treasury rejects prices older than 24 hours. At the feed's 24-hour heartbeat, update delays can temporarily block price-dependent operations."
+  ],
+  "sourceHashes": {
+    "contracts/v6/OracleV6.sol": "5347fdf3ef4cc482ebe646b27d81afccf9205fb4cf663ddf39df4e7ca7b62243",
+    "contracts/final/RentTreasury.sol": "01ac03649c5f48e8f1120a399932b6005b163d9c241177a1e06f69ac3ae79583",
+    "contracts/final/Deed.sol": "b9bc90ec51278cd587ddf33902402a033cce8a1248eea4ee02bad340fb6fc553",
+    "scripts/stock/oracle-fork-test.ts": "2059713d0e986ff9897434185b68be3d72944ad93387da63fa3a53282e61ec7a",
+    "config/robinhood-eth-usd.json": "5cefedf9970d2de4da5eaa38fbd58f69dc326505b19d086420f1869d8cf8df34"
+  },
+  "sourceBlock": 80926554,
+  "feed": {
+    "proxy": "0x78F3556b67E17Df817D51Ef5a990cDaF09E8d3A9",
+    "description": "ETH / USD",
+    "decimals": 8,
+    "roundId": "18446744073709554175",
+    "rawAnswer": "269496250177",
+    "priceUsd6": "2694962501",
+    "updatedAt": "1791214498",
+    "ageSeconds": "3214"
+  },
+  "contracts": {
+    "oracle": "0xf99add941432ec09b498ea1b680be13f2e717d88",
+    "treasury": "0xed0626e8eea7098c1e03b72c1c72b89a43ef4812",
+    "deed": "0xaa07486c20f73ff4309495411927e6ae7c884dba",
+    "fees": "0xd4185915bd9533575207dcfdeb6fdef798b095d3"
+  },
+  "rentExample": {
+    "valuationUsd6": "100000000",
+    "dailyRentWei": "111318803096029",
+    "sevenDayDepositWei": "779231621672203"
+  },
+  "purchaseExample": {
+    "valuationUsd6": "120000000",
+    "salePriceWei": "44527521238411473",
+    "feeWei": "2226376061920573",
+    "buyerRunwayWei": "623385297337761"
+  }
+}

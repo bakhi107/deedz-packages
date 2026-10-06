@@ -1,0 +1,19 @@
+{
+  "chainId": 4663,
+  "rpcUrl": "https://rpc.mainnet.chain.robinhood.com",
+  "feedProxy": "0x78F3556b67E17Df817D51Ef5a990cDaF09E8d3A9",
+  "description": "ETH / USD",
+  "decimals": 8,
+  "heartbeatSeconds": 86400,
+  "deviationPercent": 0.5,
+  "treasuryMaxAgeSeconds": 86400,
+  "adapterArtifact": "EthUsdOracleV6",
+  "sequencerUptimeFeed": null,
+  "verifiedOn": "2026-10-05",
+  "sources": [
+    "https://docs.robinhood.com/chain/oracles-and-price-feeds/",
+    "https://docs.chain.link/data-feeds/price-feeds/addresses?network=robinhood",
+    "https://reference-data-directory.vercel.app/feeds-robinhood-mainnet.json",
+    "https://docs.chain.link/data-feeds/l2-sequencer-feeds"
+  ]
+}

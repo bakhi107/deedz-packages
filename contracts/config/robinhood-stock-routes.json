@@ -1,0 +1,78 @@
+{
+  "chainId": 4663,
+  "rpcUrl": "https://rpc.mainnet.chain.robinhood.com",
+  "factory": "0x1f7d7550B1b028f7571E69A784071F0205FD2EfA",
+  "weth": "0x0Bd7D308f8E1639FAb988df18A8011f41EAcAD73",
+  "usdg": "0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168",
+  "fundingPool": "0x52e65B17fB6E5BA00Ed806f37Afcd2DaA50271Ca",
+  "stocks": [
+    {
+      "ticker": "NVDA",
+      "token": "0xd0601CE157Db5bdC3162BbaC2a2C8aF5320D9EEC",
+      "pool": "0x62AB521f71431f78ac374CdbadC6cda3c8916b6C",
+      "viaUSDG": false
+    },
+    {
+      "ticker": "TSLA",
+      "token": "0x322F0929c4625eD5bAd873c95208D54E1c003b2d",
+      "pool": "0xA953CA88ff430e9487c60cA34d757414f4efdA07",
+      "viaUSDG": false
+    },
+    {
+      "ticker": "AAPL",
+      "token": "0xaF3D76f1834A1d425780943C99Ea8A608f8a93f9",
+      "pool": "0x8bb3514e2204E1cDF3Ac149EFEe7Ff04D91B719f",
+      "viaUSDG": false
+    },
+    {
+      "ticker": "MSFT",
+      "token": "0xe93237C50D904957Cf27E7B1133b510C669c2e74",
+      "pool": "0xeb60bCD1D920ad6E102690CCFC6fB488899E1510",
+      "viaUSDG": true
+    },
+    {
+      "ticker": "AMZN",
+      "token": "0x12f190a9F9d7D37a250758b26824B97CE941bF54",
+      "pool": "0x8AC92DA74AB5F3b1d024Dc1943Ad7e15Dc4179Ef",
+      "viaUSDG": true
+    },
+    {
+      "ticker": "META",
+      "token": "0xc0D6457C16Cc70d6790Dd43521C899C87ce02f35",
+      "pool": "0xa4BdB396a69617eb7F70E2cc1EF526f7340b1B0d",
+      "viaUSDG": false
+    },
+    {
+      "ticker": "GOOGL",
+      "token": "0x2e0847E8910a9732eB3fb1bb4b70a580ADAD4FE3",
+      "pool": "0x8c2B4303fA0B99d07A5D3E9411497A277e65b673",
+      "viaUSDG": false
+    },
+    {
+      "ticker": "NFLX",
+      "token": "0xE0444EF8BF4eD74f74FD73686e2ddF4C1c5591E8",
+      "pool": "0x59895C0302F41aEaa129D2fa2442CEc01E7eF45E",
+      "viaUSDG": true
+    },
+    {
+      "ticker": "AMD",
+      "token": "0x86923f96303D656E4aa86D9d42D1e57ad2023fdC",
+      "pool": "0x5ca1B5e6Cb510b3bf53E7cd8f7d9B5a71b4a4dc0",
+      "viaUSDG": false
+    },
+    {
+      "ticker": "COIN",
+      "token": "0x6330D8C3178a418788dF01a47479c0ce7CCF450b",
+      "pool": "0x6707aeAc7D0e519B083219d27BB427364363183A",
+      "viaUSDG": false
+    }
+  ],
+  "sourceBlock": "80774963",
+  "sources": [
+    "https://docs.robinhood.com/chain/contracts/",
+    "https://api.robinhood.com/rhj/assets",
+    "https://docs.ponsfamily.com/"
+  ],
+  "keeper": "deployer (default; rotate on-chain keeper/executor roles for a different wallet)",
+  "status": "fork-only; no live DEEDZ deployment"
+}

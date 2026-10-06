@@ -1,0 +1,435 @@
+{
+  "chainId": 4663,
+  "block": "80774963",
+  "factory": "0x1f7d7550B1b028f7571E69A784071F0205FD2EfA",
+  "weth": "0x0Bd7D308f8E1639FAb988df18A8011f41EAcAD73",
+  "usdg": "0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168",
+  "stocks": [
+    {
+      "symbol": "NVDA",
+      "token": "0xd0601CE157Db5bdC3162BbaC2a2C8aF5320D9EEC",
+      "pools": [
+        {
+          "quote": "0x0Bd7D308f8E1639FAb988df18A8011f41EAcAD73",
+          "fee": 100,
+          "pool": "0x057A53e4b1b9a2fEBAE171A798E97c27300400c6",
+          "liquidity": "0"
+        },
+        {
+          "quote": "0x0Bd7D308f8E1639FAb988df18A8011f41EAcAD73",
+          "fee": 500,
+          "pool": "0x62AB521f71431f78ac374CdbadC6cda3c8916b6C",
+          "liquidity": "24197795285163566103692"
+        },
+        {
+          "quote": "0x0Bd7D308f8E1639FAb988df18A8011f41EAcAD73",
+          "fee": 3000,
+          "pool": "0xC0Be1cb0f674D9737C72B2A63fC542361185b807",
+          "liquidity": "5622857355007043585455"
+        },
+        {
+          "quote": "0x0Bd7D308f8E1639FAb988df18A8011f41EAcAD73",
+          "fee": 10000,
+          "pool": "0x8b6a6416A5d1040EfCfa6234dA6AA1265DfE123e",
+          "liquidity": "42301699260007051437"
+        },
+        {
+          "quote": "0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168",
+          "fee": 100,
+          "pool": "0xb75d2D02B0Ec3DE50d32e40A4F1A8DAE8acC4333",
+          "liquidity": "1400333883442695"
+        },
+        {
+          "quote": "0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168",
+          "fee": 500,
+          "pool": "0xd4EB21209C4D6093f80B5b84f5C45cc093EA14a3",
+          "liquidity": "6209790730007958163"
+        },
+        {
+          "quote": "0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168",
+          "fee": 3000,
+          "pool": "0xB944cec30Bd4175855215D767ADC81F39e5f7E2B",
+          "liquidity": "26306754500142107"
+        },
+        {
+          "quote": "0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168",
+          "fee": 10000,
+          "pool": "0xc277560DF3689A401bA7deDd7626168b234Ceb5e",
+          "liquidity": "18001700290564"
+        }
+      ]
+    },
+    {
+      "symbol": "TSLA",
+      "token": "0x322F0929c4625eD5bAd873c95208D54E1c003b2d",
+      "pools": [
+        {
+          "quote": "0x0Bd7D308f8E1639FAb988df18A8011f41EAcAD73",
+          "fee": 3000,
+          "pool": "0xA953CA88ff430e9487c60cA34d757414f4efdA07",
+          "liquidity": "1728455297822062008082"
+        },
+        {
+          "quote": "0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168",
+          "fee": 100,
+          "pool": "0x7868622Ff2C3b1B6C8acb15fE0bDAEBF043DDa48",
+          "liquidity": "0"
+        },
+        {
+          "quote": "0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168",
+          "fee": 500,
+          "pool": "0xc4f0172D6ac8DD294Dd1137D047d5E1893760236",
+          "liquidity": "45029806937525418"
+        },
+        {
+          "quote": "0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168",
+          "fee": 3000,
+          "pool": "0xf4ACdAEEB7022862A763C9B1B885e11191c889E3",
+          "liquidity": "397125629483554478"
+        },
+        {
+          "quote": "0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168",
+          "fee": 10000,
+          "pool": "0xB349FB08C2712f3A70Bad40a4d006b68d67e888b",
+          "liquidity": "181620673677260"
+        }
+      ]
+    },
+    {
+      "symbol": "AAPL",
+      "token": "0xaF3D76f1834A1d425780943C99Ea8A608f8a93f9",
+      "pools": [
+        {
+          "quote": "0x0Bd7D308f8E1639FAb988df18A8011f41EAcAD73",
+          "fee": 100,
+          "pool": "0xe4D4BA605B042054Bd8815D515D98DdF46232622",
+          "liquidity": "0"
+        },
+        {
+          "quote": "0x0Bd7D308f8E1639FAb988df18A8011f41EAcAD73",
+          "fee": 500,
+          "pool": "0x8bb3514e2204E1cDF3Ac149EFEe7Ff04D91B719f",
+          "liquidity": "2694840710724747488942"
+        },
+        {
+          "quote": "0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168",
+          "fee": 500,
+          "pool": "0xAae0d815EE56e4092a5E5C2911E676Fea50B2d6D",
+          "liquidity": "522567597019375353"
+        },
+        {
+          "quote": "0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168",
+          "fee": 3000,
+          "pool": "0x783C9bbB765047CFdD2b84b92b2Ca9F11D34b7Ed",
+          "liquidity": "100560384711086967"
+        },
+        {
+          "quote": "0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168",
+          "fee": 10000,
+          "pool": "0x3714aa8105DE1f384481B425788Af413748C1837",
+          "liquidity": "1298121484248714"
+        }
+      ]
+    },
+    {
+      "symbol": "MSFT",
+      "token": "0xe93237C50D904957Cf27E7B1133b510C669c2e74",
+      "pools": [
+        {
+          "quote": "0x0Bd7D308f8E1639FAb988df18A8011f41EAcAD73",
+          "fee": 3000,
+          "pool": "0x98e196c9711280F8a4CDBD70f7e6bF4c3A649cE4",
+          "liquidity": "0"
+        },
+        {
+          "quote": "0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168",
+          "fee": 100,
+          "pool": "0x3D69Ea64810300877b938E9AD9916C25912c08f5",
+          "liquidity": "0"
+        },
+        {
+          "quote": "0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168",
+          "fee": 500,
+          "pool": "0x38fA8bf13A6b2Ac49bE77BABB22C1837d1e505F9",
+          "liquidity": "0"
+        },
+        {
+          "quote": "0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168",
+          "fee": 3000,
+          "pool": "0xeb60bCD1D920ad6E102690CCFC6fB488899E1510",
+          "liquidity": "388057140307503547"
+        },
+        {
+          "quote": "0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168",
+          "fee": 10000,
+          "pool": "0x2Ea9292113514eD84Fd16aA4AD1e416537E39C8c",
+          "liquidity": "87128385518721"
+        }
+      ]
+    },
+    {
+      "symbol": "AMZN",
+      "token": "0x12f190a9F9d7D37a250758b26824B97CE941bF54",
+      "pools": [
+        {
+          "quote": "0x0Bd7D308f8E1639FAb988df18A8011f41EAcAD73",
+          "fee": 3000,
+          "pool": "0x8B2A73a8234cfc12b8B53ae048D0Ddf76BFaC37C",
+          "liquidity": "0"
+        },
+        {
+          "quote": "0x0Bd7D308f8E1639FAb988df18A8011f41EAcAD73",
+          "fee": 10000,
+          "pool": "0x2232a2D6382BFFDF18D4CD434b45d11a6b1c24cE",
+          "liquidity": "0"
+        },
+        {
+          "quote": "0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168",
+          "fee": 100,
+          "pool": "0x7b242Dfa849419242E3733308D5c91Fe2A7dAe7e",
+          "liquidity": "0"
+        },
+        {
+          "quote": "0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168",
+          "fee": 500,
+          "pool": "0xa99dea8D168392abb4AEd0419629309DAC7DBfbb",
+          "liquidity": "0"
+        },
+        {
+          "quote": "0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168",
+          "fee": 3000,
+          "pool": "0x8AC92DA74AB5F3b1d024Dc1943Ad7e15Dc4179Ef",
+          "liquidity": "1907921833425640158"
+        },
+        {
+          "quote": "0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168",
+          "fee": 10000,
+          "pool": "0x25967b7CA2d06aa46E47e188231cA78c87Ef1FD7",
+          "liquidity": "0"
+        }
+      ]
+    },
+    {
+      "symbol": "META",
+      "token": "0xc0D6457C16Cc70d6790Dd43521C899C87ce02f35",
+      "pools": [
+        {
+          "quote": "0x0Bd7D308f8E1639FAb988df18A8011f41EAcAD73",
+          "fee": 3000,
+          "pool": "0xa4BdB396a69617eb7F70E2cc1EF526f7340b1B0d",
+          "liquidity": "9119801408464724693788"
+        },
+        {
+          "quote": "0x0Bd7D308f8E1639FAb988df18A8011f41EAcAD73",
+          "fee": 10000,
+          "pool": "0xDA3D011420EC0F1B832ed2A31ABf872E69132c3d",
+          "liquidity": "0"
+        },
+        {
+          "quote": "0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168",
+          "fee": 100,
+          "pool": "0xad6Df50832884f3498cd354086CefB0e39070F1B",
+          "liquidity": "0"
+        },
+        {
+          "quote": "0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168",
+          "fee": 3000,
+          "pool": "0x107a7Cb40d8665360ba10E59471Af06150A50922",
+          "liquidity": "187635259927327526"
+        },
+        {
+          "quote": "0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168",
+          "fee": 10000,
+          "pool": "0x6FD62e9843aD2Ac2c4fbf2b62647953EA29B3537",
+          "liquidity": "313179162396204"
+        }
+      ]
+    },
+    {
+      "symbol": "GOOGL",
+      "token": "0x2e0847E8910a9732eB3fb1bb4b70a580ADAD4FE3",
+      "pools": [
+        {
+          "quote": "0x0Bd7D308f8E1639FAb988df18A8011f41EAcAD73",
+          "fee": 100,
+          "pool": "0x8fB9301586f27e2cff85312F7c1d0F16C6167cdE",
+          "liquidity": "1919404525428607252"
+        },
+        {
+          "quote": "0x0Bd7D308f8E1639FAb988df18A8011f41EAcAD73",
+          "fee": 500,
+          "pool": "0x778f2a0cF24E8D12fE3730C87Fe1448d47E66Add",
+          "liquidity": "0"
+        },
+        {
+          "quote": "0x0Bd7D308f8E1639FAb988df18A8011f41EAcAD73",
+          "fee": 3000,
+          "pool": "0x04C361dad399E9249f9C3Fe6D54915689B54A42E",
+          "liquidity": "0"
+        },
+        {
+          "quote": "0x0Bd7D308f8E1639FAb988df18A8011f41EAcAD73",
+          "fee": 10000,
+          "pool": "0x8c2B4303fA0B99d07A5D3E9411497A277e65b673",
+          "liquidity": "443841166770331948603"
+        },
+        {
+          "quote": "0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168",
+          "fee": 100,
+          "pool": "0xA3617Bb4D7Dc9DD20f79165486097a54b3593164",
+          "liquidity": "0"
+        },
+        {
+          "quote": "0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168",
+          "fee": 500,
+          "pool": "0x34D0dC122CF9A8Eb296fC5e0D3A233625D7d19b7",
+          "liquidity": "1103987817674127995"
+        },
+        {
+          "quote": "0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168",
+          "fee": 3000,
+          "pool": "0x553e9a453425CD9B90919F317061FbC3794CC57a",
+          "liquidity": "7692698253754879"
+        },
+        {
+          "quote": "0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168",
+          "fee": 10000,
+          "pool": "0xB2bB17fa1905Bcc1558b5aAeC894faAb666b323A",
+          "liquidity": "0"
+        }
+      ]
+    },
+    {
+      "symbol": "NFLX",
+      "token": "0xE0444EF8BF4eD74f74FD73686e2ddF4C1c5591E8",
+      "pools": [
+        {
+          "quote": "0x0Bd7D308f8E1639FAb988df18A8011f41EAcAD73",
+          "fee": 3000,
+          "pool": "0xa7E6D6CDb4e1F1AF8FceeD9b443039b05637162e",
+          "liquidity": "0"
+        },
+        {
+          "quote": "0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168",
+          "fee": 3000,
+          "pool": "0x59895C0302F41aEaa129D2fa2442CEc01E7eF45E",
+          "liquidity": "319704722827535490"
+        },
+        {
+          "quote": "0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168",
+          "fee": 10000,
+          "pool": "0xeA75eA625d83aE276b9ae8B0A3dC205916EE65cF",
+          "liquidity": "60761887650047"
+        }
+      ]
+    },
+    {
+      "symbol": "AMD",
+      "token": "0x86923f96303D656E4aa86D9d42D1e57ad2023fdC",
+      "pools": [
+        {
+          "quote": "0x0Bd7D308f8E1639FAb988df18A8011f41EAcAD73",
+          "fee": 3000,
+          "pool": "0x5ca1B5e6Cb510b3bf53E7cd8f7d9B5a71b4a4dc0",
+          "liquidity": "95056562338676963682"
+        },
+        {
+          "quote": "0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168",
+          "fee": 100,
+          "pool": "0x4EE16fE614F3a04f1510EDf1932A41cBd5C4af9C",
+          "liquidity": "0"
+        },
+        {
+          "quote": "0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168",
+          "fee": 3000,
+          "pool": "0x48D284A2A4d3DC1b3Da08231Fe44317e7e7Aa51f",
+          "liquidity": "85997719547912370"
+        },
+        {
+          "quote": "0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168",
+          "fee": 10000,
+          "pool": "0xD6aF1dcB75cdAE4F2efc403A58eF023A51edC686",
+          "liquidity": "2208784917677870"
+        }
+      ]
+    },
+    {
+      "symbol": "COIN",
+      "token": "0x6330D8C3178a418788dF01a47479c0ce7CCF450b",
+      "pools": [
+        {
+          "quote": "0x0Bd7D308f8E1639FAb988df18A8011f41EAcAD73",
+          "fee": 500,
+          "pool": "0xad8C7ab119A9cA04480CB117A9d87C7E2d637D22",
+          "liquidity": "0"
+        },
+        {
+          "quote": "0x0Bd7D308f8E1639FAb988df18A8011f41EAcAD73",
+          "fee": 3000,
+          "pool": "0x6707aeAc7D0e519B083219d27BB427364363183A",
+          "liquidity": "13273743043308966460281"
+        },
+        {
+          "quote": "0x0Bd7D308f8E1639FAb988df18A8011f41EAcAD73",
+          "fee": 10000,
+          "pool": "0xe12eF9f26cfc947aa48BAe4625103DD914183599",
+          "liquidity": "0"
+        },
+        {
+          "quote": "0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168",
+          "fee": 100,
+          "pool": "0x1AA941420f6347cf004E2D21E40F0632D8862cf8",
+          "liquidity": "0"
+        },
+        {
+          "quote": "0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168",
+          "fee": 500,
+          "pool": "0x3a6eC0aa6C702323414d449B5F60f4B742A82dED",
+          "liquidity": "681858980652925"
+        },
+        {
+          "quote": "0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168",
+          "fee": 3000,
+          "pool": "0x5C51A0035051fa2DB80AEc8781Be3bD6207d27E0",
+          "liquidity": "0"
+        },
+        {
+          "quote": "0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168",
+          "fee": 10000,
+          "pool": "0xB649fE35Ff2855adeF4c9A140F86E3248fAFC910",
+          "liquidity": "0"
+        }
+      ]
+    },
+    {
+      "symbol": "USDG",
+      "token": "0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168",
+      "pools": [
+        {
+          "quote": "0x0Bd7D308f8E1639FAb988df18A8011f41EAcAD73",
+          "fee": 100,
+          "pool": "0x52e65B17fB6E5BA00Ed806f37Afcd2DaA50271Ca",
+          "liquidity": "5415490152852071710"
+        },
+        {
+          "quote": "0x0Bd7D308f8E1639FAb988df18A8011f41EAcAD73",
+          "fee": 500,
+          "pool": "0x69BfaF19C9f377BB306a89aEd9F6B07e2c1a8d9a",
+          "liquidity": "1215342748110658113"
+        },
+        {
+          "quote": "0x0Bd7D308f8E1639FAb988df18A8011f41EAcAD73",
+          "fee": 3000,
+          "pool": "0xa9188730Fe85Be88ad499D7d52B099e800fB0334",
+          "liquidity": "271024343121901595"
+        },
+        {
+          "quote": "0x0Bd7D308f8E1639FAb988df18A8011f41EAcAD73",
+          "fee": 10000,
+          "pool": "0x5f009E071F07e92B6C624e83F52F17bBDa34680D",
+          "liquidity": "61448083157952077"
+        }
+      ]
+    }
+  ]
+}

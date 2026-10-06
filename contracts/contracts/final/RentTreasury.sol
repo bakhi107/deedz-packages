@@ -32,7 +32,7 @@ contract RentTreasury is Ownable, ReentrancyGuard {
     address public settlement;
     address payable public team;
     uint64 public immutable epoch;
-    bytes32[10] public tickers = [bytes32("NVDA"), "TSLA","AAPL","MSFT","AMZN","META","GOOGL","NFLX","AMD","PLTR"];
+    bytes32[10] public tickers = [bytes32("NVDA"), "TSLA","AAPL","MSFT","AMZN","META","GOOGL","NFLX","AMD","COIN"];
 
     mapping(uint256 => Position) private _position;
     uint256[] private _ids;

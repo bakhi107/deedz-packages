@@ -1,0 +1,29 @@
+{
+  "chainId": 46630,
+  "deed": "0x475525168611930Ade5F291BFF03C037f602A1d1",
+  "account": "0xB174D2D54F30dEdDEcf1ba2a24862E8c2d917662",
+  "operations": {
+    "mint": {
+      "hash": "0xc725d0aa11d90334e0372c554934afe1804dc45e19b46b02f97d36c3d8862290",
+      "nonce": 1015,
+      "confirmed": true
+    },
+    "approve-light": {
+      "hash": "0xe6561efdc1a0519235ce619e57202b25e8d87ad9388825530f1ef32ef92a0e8a",
+      "nonce": 1016,
+      "confirmed": true
+    },
+    "light": {
+      "hash": "0x3784903c87964e22af47fdf0fe1d517f2e9d2e5f5ebe0ac1c170874ddfb8996a",
+      "nonce": 1017,
+      "confirmed": true
+    },
+    "trade": {
+      "hash": "0xa3fedcefffc249d1e16e0a1b0d54796061feb879fab0a0b16a5d5ff9cbebcb85",
+      "nonce": 1018,
+      "confirmed": true
+    }
+  },
+  "tokenId": "1",
+  "status": "waiting-for-cycle"
+}

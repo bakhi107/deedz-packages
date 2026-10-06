@@ -1,0 +1,174 @@
+{
+  "status": "passed",
+  "sourceChainId": 4663,
+  "localChainId": 31337,
+  "checks": [
+    "Isolated Robinhood fork; deployer is keeper; actual stock identities and registered pools validated",
+    "Real V4 RENT buy and sell charge 5% ETH fees into the current processor",
+    "All ten stock purchases succeed; exact 70/20/10 split; failed swap rolls back the whole cycle",
+    "All eleven single-argument holder claims succeed; registration replay, wrong wallet and double-claim protections verified",
+    "Claimed stock from every clan sells back to ETH through actual Robinhood pools; no adapter WETH/USDG residue",
+    "20% liquidity allocation reinvests into the actual RENT/ETH V4 pool with simulated output bounds",
+    "Sunday executes 50/25/20/5: real RENT buy-and-burn, stock jackpot claims and liquidity reinvestment; repeat settlement rejected",
+    "Grace holders remain eligible; Dormant and Dark holders excluded; no-holder fees remain queued",
+    "Keeper rotation works; old keeper, unauthorized purchases and spoofed swap callbacks rejected"
+  ],
+  "purchases": [
+    {
+      "ticker": "0x4141504c00000000000000000000000000000000000000000000000000000000",
+      "stockOut": "516381780515047",
+      "holders": 1,
+      "transaction": "0xc3c46fd72e68a230a1c8e6106a5d925cd71b9cb888482e11837f72629629c6f1"
+    },
+    {
+      "ticker": "0x414d440000000000000000000000000000000000000000000000000000000000",
+      "stockOut": "273076694318898",
+      "holders": 1,
+      "transaction": "0xc3c46fd72e68a230a1c8e6106a5d925cd71b9cb888482e11837f72629629c6f1"
+    },
+    {
+      "ticker": "0x414d5a4e00000000000000000000000000000000000000000000000000000000",
+      "stockOut": "682713961841217",
+      "holders": 1,
+      "transaction": "0xc3c46fd72e68a230a1c8e6106a5d925cd71b9cb888482e11837f72629629c6f1"
+    },
+    {
+      "ticker": "0x434f494e00000000000000000000000000000000000000000000000000000000",
+      "stockOut": "915406771070220",
+      "holders": 1,
+      "transaction": "0xc3c46fd72e68a230a1c8e6106a5d925cd71b9cb888482e11837f72629629c6f1"
+    },
+    {
+      "ticker": "0x474f4f474c000000000000000000000000000000000000000000000000000000",
+      "stockOut": "498847125343897",
+      "holders": 1,
+      "transaction": "0xc3c46fd72e68a230a1c8e6106a5d925cd71b9cb888482e11837f72629629c6f1"
+    },
+    {
+      "ticker": "0x4d45544100000000000000000000000000000000000000000000000000000000",
+      "stockOut": "231163331409912",
+      "holders": 1,
+      "transaction": "0xc3c46fd72e68a230a1c8e6106a5d925cd71b9cb888482e11837f72629629c6f1"
+    },
+    {
+      "ticker": "0x4d53465400000000000000000000000000000000000000000000000000000000",
+      "stockOut": "326698612793748",
+      "holders": 1,
+      "transaction": "0xc3c46fd72e68a230a1c8e6106a5d925cd71b9cb888482e11837f72629629c6f1"
+    },
+    {
+      "ticker": "0x4e464c5800000000000000000000000000000000000000000000000000000000",
+      "stockOut": "2565068730519312",
+      "holders": 1,
+      "transaction": "0xc3c46fd72e68a230a1c8e6106a5d925cd71b9cb888482e11837f72629629c6f1"
+    },
+    {
+      "ticker": "0x4e56444100000000000000000000000000000000000000000000000000000000",
+      "stockOut": "1454914154824930",
+      "holders": 2,
+      "transaction": "0xc3c46fd72e68a230a1c8e6106a5d925cd71b9cb888482e11837f72629629c6f1"
+    },
+    {
+      "ticker": "0x54534c4100000000000000000000000000000000000000000000000000000000",
+      "stockOut": "455710846232728",
+      "holders": 1,
+      "transaction": "0xc3c46fd72e68a230a1c8e6106a5d925cd71b9cb888482e11837f72629629c6f1"
+    }
+  ],
+  "sales": [
+    {
+      "ticker": "NVDA",
+      "stockIn": "1454914154824930",
+      "quotedEth": "127781454760395",
+      "transaction": "0x836819b4e1508a0f66dd06aa87f199e8dd7460caa5ccbf34876213c8a454ed32"
+    },
+    {
+      "ticker": "TSLA",
+      "stockIn": "455710846232728",
+      "quotedEth": "63571513661119",
+      "transaction": "0x77b43f2ef18ce224bba32d12c6dc7f7fc57bdbbb0a56f1565476c8080aa91242"
+    },
+    {
+      "ticker": "AAPL",
+      "stockIn": "516381780515047",
+      "quotedEth": "63890727381269",
+      "transaction": "0x11204774b4cc8069ef3352446dfcf733f6c1b58b5243f32572446ec480b50a89"
+    },
+    {
+      "ticker": "MSFT",
+      "stockIn": "326698612793748",
+      "quotedEth": "63558148454863",
+      "transaction": "0x8e51d43ea33028138b7ed95e23054a606ccb35173a105c3d49dc8a0730894194"
+    },
+    {
+      "ticker": "AMZN",
+      "stockIn": "682713961841217",
+      "quotedEth": "63558148376462",
+      "transaction": "0x07f525e7b4429a564ffeb7441610b1efc78df4f56b97db19212a71bdbf453a96"
+    },
+    {
+      "ticker": "META",
+      "stockIn": "231163331409912",
+      "quotedEth": "63571513654726",
+      "transaction": "0x50c1d1f22ca6df5645ddab804084565c7823f80db328c5b5095207463deb5009"
+    },
+    {
+      "ticker": "GOOGL",
+      "stockIn": "498847125343897",
+      "quotedEth": "62681968453211",
+      "transaction": "0x147c501e9101f44c81ee6f9d5ea5e71eb6d1ddb7a058e8d36c7ed51672557393"
+    },
+    {
+      "ticker": "NFLX",
+      "stockIn": "2565068730519312",
+      "quotedEth": "63558148298060",
+      "transaction": "0x2a8785e8c1b5b26bf5bfb4434572a1fdf46bbe21b49279d07d834fda4a4eeb2b"
+    },
+    {
+      "ticker": "AMD",
+      "stockIn": "273076694318898",
+      "quotedEth": "63571513916344",
+      "transaction": "0xc3db94c7ac93a93f0819aa41484c80fcb4c289e5abe9172dba3c54ff40c223c4"
+    },
+    {
+      "ticker": "COIN",
+      "stockIn": "915406771070220",
+      "quotedEth": "63571513655720",
+      "transaction": "0xd3eb66187cd6e8a9a892567763aebdd7324d12cee6c87b33233004597246cc00"
+    }
+  ],
+  "limitations": [
+    "New DEEDZ contracts and RENT/ETH liquidity are created only on the local fork. Stock tokens and V3 liquidity are copied unchanged from Robinhood.",
+    "Keeper supplies execution bounds; quotes are not independent fair-value oracles.",
+    "No live transaction, hosted deployment or continuously running keeper is exercised."
+  ],
+  "sourceHashes": {
+    "contracts/final/PonsStockAdapter.sol": "d762658439a9d0b8587d40cbbde8e7d41db69965e9d70b74b56cc314f1fe04b6",
+    "contracts/final/FeeProcessor.sol": "50d8d729e2006233823fd4fccf32bf226d7cf4c34d225877f347fba6f2a8cc89",
+    "contracts/final/StockRewards.sol": "ccb85ec66aca9e95d203c5d71927abac9ce0a167e9246b3a68701334048d8029",
+    "contracts/final/SundaySettlement.sol": "167b6eaec9e6be81689e19310fdd6f888891b5b8a221b52e51fd867cb93c85ac",
+    "contracts/final/Deed.sol": "b9bc90ec51278cd587ddf33902402a033cce8a1248eea4ee02bad340fb6fc553",
+    "contracts/final/RentTreasury.sol": "01ac03649c5f48e8f1120a399932b6005b163d9c241177a1e06f69ac3ae79583",
+    "scripts/stock/keeper.ts": "d5c7c7b74d7e71706a5a91f86c47281a5bcb83bac9157bf0b0f80da2d701de97"
+  },
+  "sourceBlock": 80906708,
+  "keeper": "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266",
+  "deployer": "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266",
+  "contracts": {
+    "rent": "0xf99add941432ec09b498ea1b680be13f2e717d88",
+    "adapter": "0x0c269682e71b2dc923641b948f63b85cfb31e95b",
+    "deed": "0x81ae7583f06c2bc141b9141fb9d701f0f2f59133",
+    "treasury": "0x4a0a7843bbc7d33e4824cb5bdb531f0e195b64e1",
+    "rewards": "0x6699a372477f62caa0b0e3465cda30e789a8f815",
+    "processor": "0xd4185915bd9533575207dcfdeb6fdef798b095d3",
+    "settlement": "0xaa07486c20f73ff4309495411927e6ae7c884dba",
+    "liquidity": "0xdecfc2c6ddff24579d5924484a9033ce0563dbf4",
+    "router": "0x67130b50be53849b2e3bbd9b8263f66bad9a1a5c"
+  },
+  "sunday": {
+    "total": "563515333333328",
+    "rentBurned": "267567406148710937822",
+    "stockOut": "1281949368176259",
+    "transaction": "0xf5f741e27215fb4b389c2e4ce166297eb17a00ecb9238d0f326a7478b6dd5cac"
+  }
+}

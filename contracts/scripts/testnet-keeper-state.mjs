@@ -37,9 +37,9 @@ export function persistKeeperData() {
   git('push', 'origin', 'HEAD');
 }
 
-export function createRewardJournal({ rewardsAddress, directory = 'keeper-data', persist = persistKeeperData }) {
+export function createRewardJournal({ rewardsAddress, chainId = 46630, directory = 'keeper-data', persist = persistKeeperData }) {
   const dir = resolve(directory), pending = resolve(dir, 'pending.json'), file = resolve(dir, 'rewards.json');
-  const identity = { chainId: 46630, rewards: rewardsAddress.toLowerCase() };
+  const identity = { chainId, rewards: rewardsAddress.toLowerCase() };
   mkdirSync(dir, { recursive: true });
   const atomic = (path, data) => {
     writeFileSync(path + '.tmp', JSON.stringify(data, (_, v) => typeof v === 'bigint' ? v.toString() : v, 2) + '\n');
@@ -54,11 +54,21 @@ export function createRewardJournal({ rewardsAddress, directory = 'keeper-data',
     for (const planned of prepared.batches) {
       const actual = await rewards.read.batches([BigInt(planned.id)]);
       const root = actual.root ?? actual[2], funded = actual.funded ?? actual[3];
-      const total = planned.claims.reduce((sum, claim) => sum + BigInt(claim.amount), 0n);
+      let completed = planned;
+      if (planned.mode === 'shares') {
+        const size = await rewards.read.batchSize([BigInt(planned.id)]);
+        if (size <= 0n || size !== BigInt(planned.holderCount) || BigInt(planned.claims.length) !== size) throw Error('On-chain share count mismatch');
+        const indices = planned.claims.map(claim => BigInt(claim.shareIndex));
+        if (new Set(indices.map(String)).size !== indices.length || indices.some(index => index < 0n || index >= size)) throw Error('Invalid saved share indices');
+        completed = { ...planned, funded: funded.toString(), claims: planned.claims.map((claim, i) => ({
+          ...claim, amount: (funded * (indices[i] + 1n) / size - funded * indices[i] / size).toString(),
+        })) };
+      }
+      const total = completed.claims.reduce((sum, claim) => sum + BigInt(claim.amount), 0n);
       if (root.toLowerCase() !== planned.root.toLowerCase() || funded !== total) throw Error('On-chain reward batch does not match saved proofs');
       const old = history.batches.find(batch => batch.id === planned.id);
       if (old && old.root !== planned.root) throw Error('Conflicting reward history');
-      if (!old) history.batches.push({ ...planned, transaction: prepared.hash, createdAt: prepared.createdAt });
+      if (!old) history.batches.push({ ...completed, transaction: prepared.hash, createdAt: prepared.createdAt });
     }
     atomic(file, history);
     persist();

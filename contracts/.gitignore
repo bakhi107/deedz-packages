@@ -5,3 +5,9 @@ cache/
 coverage/
 typechain-types/
 *.log
+
+# Durable operator state; contains pending transactions and process locks.
+keeper-data/stock/
+
+keeper-data/**/*.lock
+keeper-data/**/*.tmp

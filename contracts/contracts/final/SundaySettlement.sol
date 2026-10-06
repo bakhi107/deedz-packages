@@ -38,6 +38,8 @@ contract SundaySettlement is Ownable, ReentrancyGuard {
     function setKeeper(address value) external onlyOwner { require(value != address(0), "Invalid keeper"); keeper = value; }
     function setLiquidity(address payable value) external onlyOwner { require(value != address(0), "Invalid liquidity"); liquidity = value; }
 
+    function setExchange(address value) external onlyOwner { require(value.code.length != 0, "Invalid exchange"); exchange = IStockSwap(value); }
+
     function winningClan(uint256 week) public view returns (bytes32 winner, uint256 score) {
         for (uint256 i; i < 10; ++i) {
             bytes32 ticker = treasury.tickers(i); uint256 candidate = treasury.clanScoreUsd6(week, ticker);
@@ -46,16 +48,33 @@ contract SundaySettlement is Ownable, ReentrancyGuard {
     }
 
     function settle(uint256 week, uint256 minimumRentOut, uint256 minimumStockOut, bytes32 jackpotRoot) external onlyKeeper nonReentrant {
+        _settle(week, minimumRentOut, minimumStockOut, jackpotRoot, 0);
+    }
+
+    function settleStocks(uint256 week, uint256 minimumRentOut, uint256 minimumStockOut, bytes32 jackpotRoot, uint256 holderCount, uint256 expectedBatch, uint256 deadline) external onlyKeeper nonReentrant returns (uint256 rentOut, uint256 stockOut) {
+        require(block.timestamp <= deadline && deadline <= block.timestamp + 120, "Expired plan");
+        require(holderCount > 0 && holderCount <= 250 && minimumRentOut > 0 && minimumStockOut > 0, "Invalid bounds");
+        require(rewards.batchCount() == expectedBatch, "Stale plan");
+        return _settle(week, minimumRentOut, minimumStockOut, jackpotRoot, holderCount);
+    }
+
+    function _settle(uint256 week, uint256 minimumRentOut, uint256 minimumStockOut, bytes32 jackpotRoot, uint256 holderCount) private returns (uint256 rentOut, uint256 stockOut) {
         require(!settled[week] && jackpotRoot != bytes32(0), "Invalid settlement"); settled[week] = true;
         uint256 total = treasury.releaseWeek(week); require(total != 0, "No rent");
         uint256 burnEth = total * 50 / 100; uint256 liquidityEth = total * 25 / 100;
         uint256 jackpotEth = total * 20 / 100; uint256 teamEth = total - burnEth - liquidityEth - jackpotEth;
-        uint256 rentOut = exchange.buyRent{value: burnEth}(address(this), minimumRentOut); rent.burn(rentOut);
+        rentOut = exchange.buyRent{value: burnEth}(address(this), minimumRentOut); rent.burn(rentOut);
         (bool lpOk,) = liquidity.call{value: liquidityEth}(""); require(lpOk, "Liquidity transfer failed");
         (bytes32 winner,) = winningClan(week); require(winner != bytes32(0), "No winning clan");
         IERC20 stock = rewards.stockToken(winner); require(address(stock) != address(0), "Winner token missing");
-        uint256 stockOut = exchange.buyStock{value: jackpotEth}(winner, address(this), minimumStockOut);
-        stock.forceApprove(address(rewards), stockOut); rewards.createBatch(winner, jackpotRoot, stockOut); stock.forceApprove(address(rewards), 0);
+        uint256 beforeBalance = stock.balanceOf(address(this));
+        exchange.buyStock{value: jackpotEth}(winner, address(this), minimumStockOut);
+        stockOut = stock.balanceOf(address(this)) - beforeBalance;
+        require(stockOut >= minimumStockOut && stockOut != 0, "Stock slippage");
+        stock.forceApprove(address(rewards), stockOut);
+        if (holderCount == 0) rewards.createBatch(winner, jackpotRoot, stockOut);
+        else rewards.createShareBatch(winner, jackpotRoot, stockOut, holderCount);
+        stock.forceApprove(address(rewards), 0);
         (bool teamOk,) = team.call{value: teamEth}(""); require(teamOk, "Team transfer failed");
         emit WeekSettled(week, winner, total, rentOut, stockOut);
     }
