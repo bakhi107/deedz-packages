@@ -1,0 +1,42 @@
+{
+  "chainId": 46630,
+  "rewards": "0x6c6af3864e9c54573a91cb5eccb5d9bf976f1d59",
+  "batches": [
+    {
+      "id": "8",
+      "ticker": "0x414d440000000000000000000000000000000000000000000000000000000000",
+      "root": "0x0d3f0c65bef060ca4a01772179fa8eedab253facc015e227f6a2aa13728f920f",
+      "mode": "shares",
+      "holderCount": 1,
+      "claims": [
+        {
+          "batchId": "8",
+          "tokenId": "2",
+          "account": "0xC878Cc072aC3a869A938A99DA404D25850835a20",
+          "shareIndex": "0",
+          "proof": []
+        }
+      ],
+      "snapshotBlock": "130328256"
+    },
+    {
+      "id": "9",
+      "ticker": "0x4e56444100000000000000000000000000000000000000000000000000000000",
+      "root": "0x74e3cffadca81fcd4efdfc854153fff62a4642d5870eb8e2de6f3df5c9247cc5",
+      "mode": "shares",
+      "holderCount": 1,
+      "claims": [
+        {
+          "batchId": "9",
+          "tokenId": "1",
+          "account": "0xB174D2D54F30dEdDEcf1ba2a24862E8c2d917662",
+          "shareIndex": "0",
+          "proof": []
+        }
+      ],
+      "snapshotBlock": "130328256"
+    }
+  ],
+  "hash": null,
+  "createdAt": "2026-10-07T06:02:09.721Z"
+}
